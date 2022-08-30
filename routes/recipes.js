@@ -55,7 +55,7 @@ router.post('/', auth, async (req,res)=>{
 //get all recipes
 router.get('/', async(req,res)=>{
     try {
-        let recipes = await Recipe.find()
+        let recipes = await Recipe.find({})
         if(recipes.length == 0) return res.status(400).send('No Recipes in DB')
 
         res.status(200).send(recipes)
