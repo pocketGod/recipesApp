@@ -1,3 +1,103 @@
-* {
-  background-color: #eef4d8;
+h3 {
+  margin: 0;
+}
+
+.recipesCount {
+  color: #b1b1b1;
+  margin: 0;
+}
+
+.input-icons i {
+  position: absolute;
+}
+
+.icon {
+  padding: 15px 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  padding-left: 50px;
+  border-radius: 50px;
+  border: none;
+}
+
+::placeholder {
+  color: #b1b1b1;
+  font-size: 10pt;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn {
+  background-color: white;
+  border-radius: 50px;
+  font-size: 10pt;
+  border: none;
+  outline: none;
+}
+
+.btn:hover {
+  background-color: #393f94;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.card {
+  border-radius: 20px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  width: 335px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+
+.card:hover .card-text {
+  color: #393f94;
+}
+
+img {
+  width: 314px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  user-select: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: white;
+  z-index: 1;
+  margin: 10px;
+  height: 30px;
+  width: 30px;
+  padding: 20px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.overlay:hover {
+  color: #ffbf38;
+  cursor: pointer;
+}
+
+.card-text {
+  color: #b1b1b1;
 }

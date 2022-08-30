@@ -1,2 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  font-family: "Rubik", sans-serif;
+}
+
+::selection {
+  background-color: #393f94;
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+  .navImg {
+    display: none;
+  }
+}
