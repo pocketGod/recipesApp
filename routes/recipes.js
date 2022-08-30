@@ -28,7 +28,6 @@ const recipeScheme = joi.object({
 const generateRandomID = async ()=>{
     let ID = _.random(1000, 999999)
     let recipe = await Recipe.findOne({recipe_id:ID})
-
     if(recipe) generateRandomID()
     else return ID
 }
