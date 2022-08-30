@@ -34,7 +34,7 @@ const generateRandomID = async ()=>{
 
 
 //add a new recipe
-router.post('/', async (req,res)=>{
+router.post('/', auth, async (req,res)=>{
     try {
         let {error} = recipeScheme.validate(req.body)
         if(error) return res.status(400).send(error.message)
@@ -93,7 +93,7 @@ router.put('/:recipe_id', auth, async(req,res)=>{
 })
 
 //delete a recipe
-router.delete('/:recipe_id', async(req,res)=>{
+router.delete('/:recipe_id',auth, async(req,res)=>{
     try {
         let recipe = await Recipe.findOneAndRemove({recipe_id:req.params.recipe_id})
         if(!recipe) return res.status(400).send('No such recipe in DB')

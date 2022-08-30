@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
+const cors = require('cors')
 const logger = require('./middlewares/logger')
 const register = require('./routes/register')
 const login = require('./routes/login')
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 8001
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cors({origin:'*'}))
 app.use(logger)
 app.use('/api/register', register)
 app.use('/api/login', login)
