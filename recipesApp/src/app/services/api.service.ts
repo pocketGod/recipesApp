@@ -33,10 +33,10 @@ export class ApiService {
 
 
   // Recipe Http Methods
-  getRecipes(): Observable<Recipe[]> {
+  getRecipes():Observable<Recipe[]> {
     return this.http.get(this.baseURL + 'recipes') as Observable<Recipe[]>
   }
-  getRecipeByID(recipe_id:number): Observable<Recipe> {
+  getRecipeByID(recipe_id:number):Observable<Recipe> {
     return this.http.get(this.baseURL + `recipes/${recipe_id}`) as Observable<Recipe>
   }
   addNewRecipe(recipe:Recipe):Observable<Recipe>{
@@ -44,7 +44,17 @@ export class ApiService {
   }
 
 
-  
+  //not checked yet
+  getRandomRecipe(tag:string):Recipe{
+    let randomRecipe = this.allRecipes[Math.round(Math.random()*(this.allRecipes.length))]
+    if (randomRecipe.tags.includes(tag)) return randomRecipe
+    else return this.getRandomRecipe(tag)
+  }
+
+
+
+
+
   constructor(private http:HttpClient) {
 
     //login test
