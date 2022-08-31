@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/interfaces/Recipe';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -19,15 +20,13 @@ export class ShowRecipesComponent implements OnInit {
 
   refreshRecipeArr():void{
     this.apiS.getRecipes().subscribe((data)=>{
-      this.allRecipes = [data]
-      // this.allRecipes.push(data)
-      console.log(data)
+      this.allRecipes = data    
     })
   }
 
-  getSpecificRecipe(recipe_id: number):void{
+  getRecipeByID(recipe_id: number):void{
     //761568 example recipe ID (pizza)
-    this.apiS.getSpecificRecipe(recipe_id).subscribe((data)=>{
+    this.apiS.getRecipeByID(recipe_id).subscribe((data)=>{
       console.log(data)
     })
   }

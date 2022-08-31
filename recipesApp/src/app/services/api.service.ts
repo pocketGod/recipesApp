@@ -14,17 +14,18 @@ export class ApiService {
     'Authorization': 'Insert-Token-Here'
   }
 
-  allRecipes ?: Recipe[]
+  allRecipes: Recipe[] = []
 
 
   constructor(private http:HttpClient) {}
 
-  getRecipes(): Observable<Recipe> {
-    return this.http.get(this.baseURL + 'recipes') as Observable<Recipe>
+  getRecipes(): Observable<any> {
+    return this.http.get(this.baseURL + 'recipes') as Observable<any>
   }
 
-  getSpecificRecipe(recipe_id:number): Observable<Recipe> {
+  getRecipeByID(recipe_id:number): Observable<Recipe> {
     return this.http.get(this.baseURL + `recipes/${recipe_id}`) as Observable<Recipe>
   }
+
 
 }
