@@ -23,7 +23,7 @@ router.post('/', async (req,res)=>{
         if(!result) return res.status(400).send('Invalid email or password')
 
         let token = jwt.sign({id:user._id}, process.env.SECRETKEY)
-        res.status(200).send({token: token})
+        res.status(200).send(token)
 
     } catch (error) {
         res.status(400).send('ERROR in POST login')

@@ -29,7 +29,7 @@ router.post('/', async(req,res)=>{
         await user.save()
 
         let token = jwt.sign({id:user._id}, process.env.SECRETKEY)
-        res.status(201).send({token: token})
+        res.status(201).send(token)
 
     } catch(err) {
         res.status(400).send('ERROR in POST user')
