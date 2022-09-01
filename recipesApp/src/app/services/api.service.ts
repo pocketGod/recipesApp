@@ -48,6 +48,9 @@ export class ApiService {
   getRecipesByMainIng(ing:string):Observable<Recipe[]>{
     return this.http.get(this.baseURL + `recipes/main/${ing}`) as Observable<Recipe[]>
   }
+  getAllTags():Observable<string[]>{
+    return this.http.get(this.baseURL + `recipes/alltags`) as Observable<string[]>
+  }
 
 
 

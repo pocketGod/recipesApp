@@ -21,6 +21,7 @@ export class ShowRecipesComponent implements OnInit {
     // this.getRecipeByID(526222)
     // this.getRandomRecipeByTag('sweet')
     // this.getRecipesByMainIng('egg')
+    // this.getAllTags()
   }
 
   refreshRecipeArr():void{
@@ -54,6 +55,11 @@ export class ShowRecipesComponent implements OnInit {
   getRecipesByMainIng(ing:string){
     // "egg" - example
     this.apiS.getRecipesByMainIng(ing).subscribe((data)=>{
+      console.log(data)
+    })
+  }
+  getAllTags(){
+    this.apiS.getAllTags().subscribe((data)=>{
       console.log(data)
     })
   }
