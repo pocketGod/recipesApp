@@ -65,6 +65,13 @@ export class ApiService {
   }
 
 
+  // addLikedRecipe(ID:number):Observable<string[]>{
+  //   this.http.post(this.baseURL + `recipes/likes/${ID}`, ID,{ headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) Observable<string[]>
+  // }
+
+ 
+
+
 
 
 
