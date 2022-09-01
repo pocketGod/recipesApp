@@ -4,5 +4,7 @@ export interface Ingredient {
     mainIngredient: Boolean,
     amount: String,
     similar: String[],
-    pic: String
+    pic: String,
+    _id?: String,
+    __v?: String
 }
