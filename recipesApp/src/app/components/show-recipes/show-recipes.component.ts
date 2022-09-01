@@ -16,7 +16,6 @@ export class ShowRecipesComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshRecipeArr()
-
     // this.apiS.getRecipes().subscribe((data)=>console.log(data))
     // this.getRecipeByID(526222)
     // this.getRandomRecipeByTag('sweet')
@@ -26,7 +25,8 @@ export class ShowRecipesComponent implements OnInit {
 
   refreshRecipeArr():void{
     this.apiS.getRecipes().subscribe((data)=>{
-      this.allRecipes = data    
+      this.allRecipes = data   
+      // console.log(data)
     })
   }
 
