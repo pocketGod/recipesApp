@@ -39,16 +39,17 @@ export class ApiService {
   getRecipeByID(recipe_id:number):Observable<Recipe> {
     return this.http.get(this.baseURL + `recipes/${recipe_id}`) as Observable<Recipe>
   }
+  getRecipesByTag(tag:string):Observable<Recipe[]>{
+    return this.http.get(this.baseURL + `recipes/tags/${tag}`) as Observable<Recipe[]>
+  }
   addNewRecipe(recipe:Recipe):Observable<Recipe>{
     return this.http.post(this.baseURL + `recipes`, recipe,{ headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) as unknown as Observable<Recipe>
   }
-
-
-  //not checked yet
-  getRandomRecipe(tag:string):Recipe{
-    let randomRecipe = this.allRecipes[Math.round(Math.random()*(this.allRecipes.length))]
-    if (randomRecipe.tags.includes(tag)) return randomRecipe
-    else return this.getRandomRecipe(tag)
+  editRecipeData(recipe:Recipe, ID:number):Observable<Recipe> {
+    return this.http.put(this.baseURL + `recipes/${ID}`, recipe, { headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) as Observable<Recipe>
+  }
+  deleteRecipe(ID:number):Observable<string>{
+    return this.http.delete(this.baseURL + `recipes/${ID}`, { headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) as Observable<string>
   }
 
 
@@ -57,18 +58,18 @@ export class ApiService {
 
   constructor(private http:HttpClient) {
 
-    //login test
-    // this.login({email:'aviv@gmail.com', password:'123456'}).subscribe((data:string)=>{
-    //   console.log(data);
-    //   this.setSessionData('token', data)
+
+    // login test
+    // this.login({email:'aviv@gmail.com', password:'123456'}).subscribe((token:string)=>{
+    //   console.log(token);
+    //   this.setSessionData('token', token)
     // })
 
 
     //register test
-    // שחף אם אתה מריץ את הטסט הבא אז תמלא פרטים אחרים של יוזר שלא קיים
-    // this.register({email:'test@gmail.com', password:'123456', name:'test', admin:false}).subscribe((data:string)=>{
-    // console.log(data);
-    // this.setSessionData('token', data)
+    // this.register({email:'aviv@gmail.com', password:'123456', name:'test', admin:false}).subscribe((token:string)=>{
+    // console.log(token);
+    // this.setSessionData('token', token)
     // })
 
 

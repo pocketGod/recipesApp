@@ -65,7 +65,7 @@ router.get('/', async(req,res)=>{
     }
 })
 
-//get a specific recipe
+//get one recipe base on ID
 router.get('/:recipe_id', async(req,res)=>{
     try {
         let recipe = await Recipe.findOne({recipe_id: req.params.recipe_id})
@@ -76,6 +76,30 @@ router.get('/:recipe_id', async(req,res)=>{
         res.status(400).send('ERROR in GET a specific Recipe')
     }
 })
+
+//get all recipes based on TAGS
+router.get('/tags/:tag', async(req,res)=>{
+    try {
+        let recipes = await Recipe.find({})
+        if(recipes.length == 0) return res.status(400).send('No Recipes in DB')
+
+        let matchingRecipesArr = []
+
+        recipes.forEach((rcp)=>{
+            if(rcp.tags.includes(req.params.tag)){
+                matchingRecipesArr.push(rcp)
+            }
+        })
+
+        if(matchingRecipesArr.length == 0) return res.status(400).send('No Recipes with these tags')
+
+        res.status(200).send(matchingRecipesArr)
+
+    } catch (err) {
+        res.status(400).send('ERROR in GET Recipes by TAG')
+    }
+})
+
 
 //edit a specific recipe
 router.put('/:recipe_id', auth, async(req,res)=>{
