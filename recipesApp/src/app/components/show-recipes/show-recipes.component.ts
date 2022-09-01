@@ -16,11 +16,11 @@ export class ShowRecipesComponent implements OnInit {
   ngOnInit(): void {
     this.refreshRecipeArr();
 
-    //this.apiS.getRecipes().subscribe((data) => console.log(data));
-    //this.getRecipeByID(526222);
-    // this.getRandomRecipeByTag('sweet');
-    // this.getRecipesByMainIng('egg');
-    this.getAllTags();
+    // this.apiS.getRecipes().subscribe((data)=>console.log(data))
+    // this.getRecipeByID(526222)
+    // this.getRandomRecipeByTag('sweet')
+    // this.getRecipesByMainIng('egg')
+    // this.getAllTags()
   }
 
   refreshRecipeArr(): void {

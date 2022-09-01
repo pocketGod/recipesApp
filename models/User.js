@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
     admin:{
         type: Boolean,
         required: true
+    },
+    likes:{
+        type: [String],
+        required: false
     }
 })
 

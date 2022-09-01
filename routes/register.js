@@ -21,6 +21,8 @@ router.post('/', async(req,res)=>{
         let user = await User.findOne({email:req.body.email})
         if(user) return res.status(400).send('user already exists...')
 
+        req.body.likes = []
+
         user = new User(req.body)
 
         let salt = await bcrypt.genSalt(10)

@@ -1,5 +1,6 @@
 const express = require('express')
 const { Recipe } = require('../models/recipe')
+const { User } = require('../models/User')
 const _ = require('lodash')
 const joi = require('joi')
 const auth = require('../middlewares/auth')
@@ -150,22 +151,74 @@ router.get('/alltags', async(req,res)=>{
         let recipes = await Recipe.find({})
         if(recipes.length == 0) return res.status(400).send('No Recipes in DB')
 
-        let tagsArr = new Set()
-
+        let allTagsArr = []
         recipes.forEach((rcp)=>{
             rcp.tags.forEach((tag)=>{
-                tagsArr.add(tag)
+                allTagsArr.push(tag)
             })
         })
 
-        if(tagsArr.length == 0) return res.status(400).send('No tags ere found')
+        if(allTagsArr.length == 0) return res.status(400).send('No tags ere found')
 
-        res.status(200).send(Array.from(tagsArr))
+        let map = allTagsArr.reduce((p, c)=> {
+            p[c] = (p[c] || 0) + 1
+            return p
+          }, {})
+
+        let chosenTagsArr = Object.keys(map).sort((a, b)=> {
+            return map[b] - map[a]
+        })
+
+
+        res.status(200).send(chosenTagsArr)
 
     } catch (err) {
         res.status(400).send('ERROR in GET Recipes by TAG')
     }
 })
+
+
+// //get liked recepies
+// router.get('/likes', async(req,res)=>{
+//     try {
+//         let user = await User.findOne({email: req.header('email')})
+//         if(!user) return res.status(400).send('No such User')
+
+//         let likedRecipes = []
+
+//         let rcpArr = await Recipe.find({})
+
+//         rcpArr.forEach((rcp)=>{
+//             user.likes.forEach((like)=>{
+//                 if (like == rcp.recipe_id) {
+//                     likedRecipes.push(rcp)
+//                 }
+//             })
+//         })
+//         res.status(200).send(likedRecipes)
+//     } catch (err) {
+//         res.status(400).send('ERROR in GET a specific Recipe')
+//     }
+// })
+
+// //add like to user likeArr
+// router.post('/likes/:recipeID', auth, async (req,res)=>{
+//     try {
+//         let user = await User.findOne({email: req.header('email')})
+//         if(!user) return res.status(400).send('No such User')
+
+//         user.likes.push(req.params.recipeID)
+
+//         await user.save()
+        
+//         res.status(200).send(user.likes)
+
+
+//     } catch (err) {
+//         res.status(400).send('ERROR in adding a like')
+//     }
+// })
+
 
 
 //get one recipe base on ID
@@ -196,6 +249,7 @@ router.put('/:recipe_id', auth, async(req,res)=>{
         res.status(400).send('ERROR in PUT a specific Recipe')
     }
 })
+
 
 //delete a recipe
 router.delete('/:recipe_id',auth, async(req,res)=>{

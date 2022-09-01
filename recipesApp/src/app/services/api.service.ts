@@ -65,57 +65,16 @@ export class ApiService {
   }
 
 
+  // addLikedRecipe(ID:number):Observable<string[]>{
+  //   this.http.post(this.baseURL + `recipes/likes/${ID}`, ID,{ headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) Observable<string[]>
+  // }
+
+ 
 
 
 
-  constructor(private http:HttpClient) {
 
 
-    // login test
-    // this.login({email:'aviv@gmail.com', password:'123456'}).subscribe((token:string)=>{
-    //   console.log(token);
-    //   this.setSessionData('token', token)
-    // })
-
-
-    //register test
-    // this.register({email:'aviv@gmail.com', password:'123456', name:'test', admin:false}).subscribe((token:string)=>{
-    // console.log(token);
-    // this.setSessionData('token', token)
-    // })
-
-
-      //new recipe test
-  //     this.addNewRecipe(JSON.parse(`{
-  //       "title": "pizza22",
-  //       "category": "italian",
-  //       "description": "who doesnt know what a pizza is?",
-  //       "tags": ["yummy", "with friends", "easy to make"],
-  //       "ingredients": [{
-  //           "name": "motzarella",
-  //           "mandatory": false,
-  //           "mainIngredient": false,
-  //           "amount": "150g",
-  //           "similar": ["burekas pizza", "kaltzone"],
-  //           "pic": "url to the desired picture"
-  //       },
-  //       {
-  //           "name": "white flour",
-  //           "mandatory": false,
-  //           "mainIngredient": false,
-  //           "amount": "300g",
-  //           "similar": ["full wheat flour", "hummos flour"],
-  //           "pic": "url to the desired picture"
-  //       }],
-  //       "img": "url to the desired picture",
-  //       "mainTaste": ["sweet", "salty"],
-  //       "rating": 8.8,
-  //       "cookTime": "45m"
-  //   }`)
-  // ).subscribe((data:Recipe)=>{
-  //   console.log(data)
-  // })
-
-  }
+  constructor(private http:HttpClient) {}
 
 }
