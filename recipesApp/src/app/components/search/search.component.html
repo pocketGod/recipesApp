@@ -16,12 +16,23 @@
         </div>
       </div>
       <div class="col my-1 small">
-        <p class="text-muted d-inline mx-2">Recomended:</p>
-        <button class="btn mx-1" *ngFor="let tag of tags">{{ tag }}</button>
+        <span class="text-muted">Recomended:</span>
+        <button class="btn m-1" (click)="showMoreTags = !showMoreTags">
+          <i class="fa-solid fa-circle-plus mx-1"></i> Show More
+        </button>
+        <div *ngIf="showMoreTags">
+          <ul class="tags">
+            <li *ngFor="let tag of tags">
+              <input type="checkbox" id="{{ tag }}" value="Easy to make" />
+              <label for="{{ tag }}">{{ tag }}</label>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <div *ngIf="recipesArr | filter: 'title':recipeName as recipesArr">
+      <!--<div *ngIf="recipesArr | tagFilter: 'tags':recipeTag as recipesArr">-->
       <div class="d-flex gap-4 flex-wrap">
         <div class="card" *ngFor="let recipe of recipesArr">
           <div class="overlay">

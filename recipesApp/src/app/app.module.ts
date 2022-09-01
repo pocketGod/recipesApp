@@ -9,6 +9,8 @@ import { ShowRecipesComponent } from './components/show-recipes/show-recipes.com
 import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { TagFilterPipe } from './pipes/tag-filter.pipe';
+import { CheckIngredientsPipe } from './pipes/check-ingredients.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { FormsModule } from '@angular/forms';
     SearchComponent,
     ShowRecipesComponent,
     FilterPipe,
+    TagFilterPipe,
+    CheckIngredientsPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

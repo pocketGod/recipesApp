@@ -101,3 +101,48 @@ img {
 .card-text {
   color: #b1b1b1;
 }
+
+ul {
+  padding: 2px !important;
+}
+.tags {
+  display: inline;
+  list-style: none;
+}
+.tags li {
+  display: inline-block;
+  margin: 4px;
+}
+.tags li label {
+  background-color: white;
+  border-radius: 50px;
+  font-size: 10pt;
+  border: none;
+  outline: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s;
+}
+
+.tags li label {
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.tags li label:hover {
+  outline: 1px solid rgb(183, 183, 183);
+}
+
+.tags li input[type="checkbox"]:checked + label {
+  background-color: #393f94;
+  color: #fff;
+}
+
+.tags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}

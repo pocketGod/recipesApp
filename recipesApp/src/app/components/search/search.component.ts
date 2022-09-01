@@ -13,6 +13,9 @@ export class SearchComponent implements OnInit {
   recipesCounter: number = 99;
   tags: String[] = [];
   recipeName: string = '';
+  recipeTag: string = '';
+  ingredients: string = '';
+  showMoreTags: boolean = false;
 
   recipesArr: Recipe[] = [];
 
@@ -20,7 +23,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiServie.getAllTags().subscribe((tagsData) => {
-      this.tags = tagsData;
+      for (let i = 0; i < 4; i++) {
+        this.tags = tagsData;
+      }
     });
 
     this.apiServie.getRecipes().subscribe((tagsData) => {
