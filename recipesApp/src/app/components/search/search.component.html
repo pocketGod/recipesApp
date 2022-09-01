@@ -11,40 +11,28 @@
             class="form-control"
             type="text"
             placeholder="Search for ingredients or everything you like to eat"
+            [(ngModel)]="recipeName"
           />
         </div>
       </div>
       <div class="col my-1 small">
         <p class="text-muted d-inline mx-2">Recomended:</p>
-        <button class="btn mx-1">Diet</button>
-        <button class="btn mx-1">Vegan</button>
-        <button class="btn mx-1">Vegetables</button>
-        <button class="btn mx-1">Dairy</button>
-        <button class="btn mx-1">Kosher</button>
+        <button class="btn mx-1" *ngFor="let tag of tags">{{ tag }}</button>
       </div>
     </div>
 
-    <div class="d-flex gap-4 flex-wrap">
-      <div class="card" *ngFor="let recipe of recipesArr">
-        <div class="overlay">
-          <i class="fa-solid fa-star mx-3 favorite"></i>
-        </div>
-        <img
-          src="{{ recipe.img }}"
-          class="cardImg"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight"
-        />
-        <div
-          class="m-1"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight"
-        >
-          <div class="card-titles">{{ recipe.name }}</div>
-          <div class="card-text small mb-2">
-            You have {{ recipe.amount }} ingredients
+    <div *ngIf="recipesArr | filter: 'title':recipeName as recipesArr">
+      <div class="d-flex gap-4 flex-wrap">
+        <div class="card" *ngFor="let recipe of recipesArr">
+          <div class="overlay">
+            <i class="fa-solid fa-star mx-3 favorite"></i>
+          </div>
+          <img src="{{ recipe.img }}" class="cardImg" />
+          <div class="m-1">
+            <div class="card-titles">{{ recipe.title }}</div>
+            <div class="card-text small mb-2">
+              <!--You have {{ recipe.ingredients  }} ingredients-->
+            </div>
           </div>
         </div>
       </div>
