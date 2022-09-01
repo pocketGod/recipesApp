@@ -103,6 +103,58 @@ router.get('/tags/:tag', async(req,res)=>{
     }
 })
 
+//get random recipe based on TAG/null
+router.get('/random/:tag', async(req,res)=>{
+    try {
+        let recipes = await Recipe.find({})
+        if(recipes.length == 0) return res.status(400).send('No Recipes in DB')
+
+        let matchingRecipesArr = []
+
+        recipes.forEach((rcp)=>{
+            if(req.params.tag == 'any') matchingRecipesArr.push(rcp)
+            else if(rcp.tags.includes(req.params.tag) || rcp.mainTaste.includes(req.params.tag)){
+                matchingRecipesArr.push(rcp)
+            }
+        })
+
+        if(matchingRecipesArr.length == 0) return res.status(400).send('No Recipes with these tags')
+
+        let randomIndex = _.random(0, matchingRecipesArr.length)
+        let randomRecipe = matchingRecipesArr[randomIndex]
+
+        res.status(200).send(randomRecipe)
+
+    } catch (err) {
+        res.status(400).send('ERROR in GET Recipes by TAG')
+    }
+})
+
+//get reciepe based on main ingredient
+router.get('/main/:ing', async(req,res)=>{
+    try {
+        let recipes = await Recipe.find({})
+        if(recipes.length == 0) return res.status(400).send('No Recipes in DB')
+
+        let matchingRecipesArr = new Set()
+
+        recipes.forEach((rcp)=>{
+            rcp.ingredients.forEach((ingredient)=>{
+                if(ingredient.name == req.params.ing){
+                    if(ingredient.mainIngredient) matchingRecipesArr.add(rcp)
+                }
+            })
+        })
+
+        if(matchingRecipesArr.length == 0) return res.status(400).send('No Recipes with this ingredient as a main ingredient')
+
+        res.status(200).send(Array.from(matchingRecipesArr))
+
+    } catch (err) {
+        res.status(400).send('ERROR in GET Recipes by main ingredient')
+    }
+})
+
 
 //edit a specific recipe
 router.put('/:recipe_id', auth, async(req,res)=>{

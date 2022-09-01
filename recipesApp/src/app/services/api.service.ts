@@ -42,6 +42,15 @@ export class ApiService {
   getRecipesByTag(tag:string):Observable<Recipe[]>{
     return this.http.get(this.baseURL + `recipes/tags/${tag}`) as Observable<Recipe[]>
   }
+  getRandomRecipe(tag:string):Observable<Recipe>{
+    return this.http.get(this.baseURL + `recipes/random/${tag}`) as Observable<Recipe>
+  }
+  getRecipesByMainIng(ing:string):Observable<Recipe[]>{
+    return this.http.get(this.baseURL + `recipes/main/${ing}`) as Observable<Recipe[]>
+  }
+
+
+
   addNewRecipe(recipe:Recipe):Observable<Recipe>{
     return this.http.post(this.baseURL + `recipes`, recipe,{ headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) as unknown as Observable<Recipe>
   }
