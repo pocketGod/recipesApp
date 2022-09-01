@@ -1,7 +1,6 @@
 import { Ingredient } from "./Ingredient";
 
 export interface Recipe {
-    _id?: String,
     recipe_id?: Number,
     title: String,
     category: String,
@@ -11,5 +10,7 @@ export interface Recipe {
     img: String,
     mainTaste: String[],
     rating: number,
-    cookTime: String
+    cookTime: String,
+    _id?: String,
+    __v?: String
 } 

@@ -18,7 +18,7 @@ export class ShowRecipesComponent implements OnInit {
     this.refreshRecipeArr()
 
     // this.apiS.getRecipes().subscribe((data)=>console.log(data))
-
+    this.getRecipeByID(526222)
   }
 
   refreshRecipeArr():void{
@@ -33,7 +33,7 @@ export class ShowRecipesComponent implements OnInit {
 
 
   getRecipeByID(recipe_id: number):void{
-    //761568  - example recipe ID (pizza)
+    //526222  - example recipe ID (pizza)
     this.apiS.getRecipeByID(recipe_id).subscribe((data)=>{
       console.log(data)
     })
@@ -53,6 +53,11 @@ export class ShowRecipesComponent implements OnInit {
   }
   deleteReciepe(ID:number){
     this.apiS.deleteRecipe(ID).subscribe((data)=>{
+      console.log(data)
+    })
+  }
+  addNewRecipe(recipe:Recipe){
+    this.apiS.addNewRecipe(recipe).subscribe((data)=>{
       console.log(data)
     })
   }

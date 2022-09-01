@@ -39,7 +39,10 @@ router.post('/', auth, async (req,res)=>{
         let {error} = recipeScheme.validate(req.body)
         if(error) return res.status(400).send(error.message)
 
-        let recipe = new Recipe(req.body)
+        let recipe = await Recipe.findOne({title:req.body.title})
+        if(recipe) return res.status(400).send(`There's already a Reciepe with this name in DB`)
+
+        recipe = new Recipe(req.body)
         recipe.recipe_id = await generateRandomID()
 
         await recipe.save()
