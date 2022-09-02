@@ -25,18 +25,26 @@
           Show Tags
         </button>
         <div *ngIf="showMoreTags">
+          <!-- <form>
+            <div *ngFor="let tag of tags">
+              <input name="{{ tag }}" [(ngModel)]="tagFilters[tag]" type="checkbox" id="{{ tag }}" value="{{tag}}" (change)="onTagCheckboxChange($event)" />
+              <label for="{{ tag }}">{{ tag }}</label>
+            </div>
+          </form> -->
+
+
           <ul class="tags">
             <li *ngFor="let tag of tags">
-              <input type="checkbox" id="{{ tag }}" value="{{tag}}" />
+              <input name="{{ tag }}" [(ngModel)]="tagFilters[tag]" type="checkbox" id="{{ tag }}" value="{{tag}}" (change)="onTagCheckboxChange($event)"/>
               <label for="{{ tag }}">{{ tag }}</label>
             </li>
           </ul>
         </div>
+        
       </div>
     </div>
 
     <div *ngIf="recipesArr | filter: recipeName as recipesArr">
-      <div *ngIf="recipesArr">
       <div class="d-flex gap-4 flex-wrap">
         <div class="card" *ngFor="let recipe of recipesArr">
           <div (click)="likeRecipe(recipe.recipe_id!)" class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Component, Input, OnInit, ViewChildren } from '@angular/core';
 import { string } from 'joi';
 import { Recipe } from 'src/app/interfaces/Recipe';
 import { ApiService } from 'src/app/services/api.service';
@@ -18,7 +18,8 @@ export class SearchComponent implements OnInit {
 
   recipesArr: Recipe[] = [];
 
-  tagFilters: { [key: string]: boolean } = {}
+  @Input() tagFilters: { [key: string]: boolean } = {}
+  filteredByTagRecipes: Recipe[] = []
 
   constructor(private apiServie: ApiService) {}
 
@@ -53,21 +54,13 @@ export class SearchComponent implements OnInit {
     return this.apiServie.checkIfThisRecipeIsLiked(ID)
   }
 
-  onTagCheckboxChange(val:string){
-    this.tagFilters[val] = !this.tagFilters[val]
+  onTagCheckboxChange(e:any){
+    let x = this.tagFilters[e.srcElement.value as string]
+    x = x?false:true
+    // console.log(x)
+    // console.log(this.tagFilters)
+    return x
   }
-
-  // onTagCheck(val:string){
-  //   this.recipesArr.forEach((rcp)=>{
-  //     rcp.tags.forEach((tag)=>{
-  //       if (tag == val){
-  //         let index = this.recipesArr.indexOf(rcp)
-  //         this.recipesArr.splice(index, 1)
-  //       }
-  //     })
-  //   })
-  // }
-
 
 
 }

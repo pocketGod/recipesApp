@@ -10,17 +10,18 @@ export class TagFilterPipe implements PipeTransform {
     filters: any
   ): Recipe[] {
 
-    if(!filters) return recipes
+    if(filters.every((x:boolean)=> x==false)) return recipes
 
     let resArr = new Set()
 
     let keyArr = Object.keys(filters)
     let valArr = Object.values(filters)
 
-    if(valArr.every( (filter: any)  => !filter)) return recipes
-    else{
-      return recipes[2]
-    }
+    recipes.forEach((rcp:Recipe)=>{
+      for (let i = 0; i < valArr.length; i++) {
+        if(rcp.tags.includes(keyArr[i]) && valArr[i]) resArr.add(rcp)
+      }
+    })
 
 
 
