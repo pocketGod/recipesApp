@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div *ngIf="recipesArr | filter: 'title':recipeName as recipesArr">
+    <div *ngIf="recipesArr | filter: recipeName as recipesArr">
       <div
         *ngIf="recipesArr | checkIngredients: recipeName"
       >

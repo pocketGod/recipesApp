@@ -7,19 +7,17 @@ import { Recipe } from '../interfaces/Recipe';
 export class FilterPipe implements PipeTransform {
   transform(
     recipes: Recipe[],
-    recipeName: keyof Recipe,
     value: string
   ): Recipe[] {
-    let resArr: Recipe[] = [];
+    let resArr = new Set()
     for (let recipe of recipes) {
-      if (
-        (recipe[recipeName] as string)
-          .toLowerCase()
-          .includes(value.toLowerCase())
-      ) {
-        resArr.push(recipe);
-      }
+      if (recipe.title.includes(value)) resArr.add(recipe)
+      recipe.ingredients.forEach((ing)=>{
+        if(ing.name.includes(value)) resArr.add(recipe)
+      })
     }
-    return resArr;
+
+
+    return Array.from(resArr) as  Recipe[]
   }
 }
