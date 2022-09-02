@@ -14,29 +14,11 @@ export class ApiService {
   allRecipes: Recipe[] = []
 
 
-  // sessionStorage Methods
-  getSessionData(key:string):string{
-    return sessionStorage.getItem(key) as string
-  }
-  setSessionData(key:string, val:string):void{
-    sessionStorage.setItem(key, val)
-  }
-
-
-  // User Http Methods
-  register(user: User):Observable<string>{
-    return this.http.post(this.baseURL + `register`, user, {responseType: 'text'}) as Observable<string>
-  }
-  login(user: User):Observable<string>{
-    return this.http.post(this.baseURL + `login`, user, {responseType: 'text'}) as Observable<string>
-  }
-
-
   // Recipe Http Methods
   getRecipes():Observable<Recipe[]> {
     return this.http.get(this.baseURL + 'recipes') as Observable<Recipe[]>
   }
-  getRecipeByID(recipe_id:number):Observable<Recipe> {
+  getRecipeByID(recipe_id:string):Observable<Recipe> {
     return this.http.get(this.baseURL + `recipes/${recipe_id}`) as Observable<Recipe>
   }
   getRecipesByTag(tag:string):Observable<Recipe[]>{
@@ -57,21 +39,59 @@ export class ApiService {
   addNewRecipe(recipe:Recipe):Observable<Recipe>{
     return this.http.post(this.baseURL + `recipes`, recipe,{ headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) as unknown as Observable<Recipe>
   }
-  editRecipeData(recipe:Recipe, ID:number):Observable<Recipe> {
+  editRecipeData(recipe:Recipe, ID:string):Observable<Recipe> {
     return this.http.put(this.baseURL + `recipes/${ID}`, recipe, { headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) as Observable<Recipe>
   }
-  deleteRecipe(ID:number):Observable<string>{
+  deleteRecipe(ID:string):Observable<string>{
     return this.http.delete(this.baseURL + `recipes/${ID}`, { headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) as Observable<string>
   }
 
 
-  // addLikedRecipe(ID:number):Observable<string[]>{
-  //   this.http.post(this.baseURL + `recipes/likes/${ID}`, ID,{ headers: { responseType: 'text', Authorization: this.getSessionData('token') }}) Observable<string[]>
-  // }
+  addLikedRecipe(ID:string){
+    let likesArr: string[] = JSON.parse(this.getLocalStorageData('likesArr'))
+    if (likesArr.includes(ID)) {
+      let index = likesArr.indexOf(ID)
+      likesArr.splice(index, 1)
+    }
+    else{
+      likesArr.push(ID)
+    }
+    this.setLocalStorageData('likesArr', JSON.stringify(likesArr))
+  }
+  getLikedRecipeArr(){
+    let likesArr: string[] = JSON.parse(this.getLocalStorageData('likesArr'))
+    return likesArr
+  }
+  checkIfThisRecipeIsLiked(ID:string):boolean{
+    let likesArr: string[] = JSON.parse(this.getLocalStorageData('likesArr'))
+    return likesArr.includes(ID)
+  }
 
- 
+  
+
+  
+  // session and local Storage Methods
+  getSessionData(key:string):string{
+    return sessionStorage.getItem(key) as string
+  }
+  setSessionData(key:string, val:string):void{
+    sessionStorage.setItem(key, val)
+  }
+  getLocalStorageData(key:string):string{
+    return localStorage.getItem(key) as string
+  }
+  setLocalStorageData(key:string, val:string):void{
+    localStorage.setItem(key, val)
+  }
 
 
+  // User Http Methods
+  register(user: User):Observable<string>{
+    return this.http.post(this.baseURL + `register`, user, {responseType: 'text'}) as Observable<string>
+  }
+  login(user: User):Observable<string>{
+    return this.http.post(this.baseURL + `login`, user, {responseType: 'text'}) as Observable<string>
+  }
 
 
 

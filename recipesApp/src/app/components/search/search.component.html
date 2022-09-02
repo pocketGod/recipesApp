@@ -35,8 +35,8 @@
       <!--<div *ngIf="recipesArr | tagFilter: 'tags':recipeTag as recipesArr">-->
       <div class="d-flex gap-4 flex-wrap">
         <div class="card" *ngFor="let recipe of recipesArr">
-          <div class="overlay">
-            <i class="fa-solid fa-star mx-3 favorite"></i>
+          <div class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">
+            <i (click)="likeRecipe(recipe.recipe_id!)" class="fa-solid fa-star mx-3 favorite"></i>
           </div>
           <img src="{{ recipe.img }}" class="cardImg" />
           <div class="m-1">

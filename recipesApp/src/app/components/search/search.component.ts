@@ -22,6 +22,10 @@ export class SearchComponent implements OnInit {
   constructor(private apiServie: ApiService) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('likesArr')==null) {
+      localStorage.setItem('likesArr', '[]')
+    }
+
     this.apiServie.getAllTags().subscribe((tagsData) => {
       for (let i = 0; i < 4; i++) {
         this.tags = tagsData;
@@ -31,5 +35,13 @@ export class SearchComponent implements OnInit {
     this.apiServie.getRecipes().subscribe((tagsData) => {
       this.recipesArr = tagsData;
     });
+  }
+
+  likeRecipe(ID:string){
+    this.apiServie.addLikedRecipe(ID)
+  }
+
+  checkIfThisRecipeIsLiked(ID:string):boolean{
+    return this.apiServie.checkIfThisRecipeIsLiked(ID)
   }
 }

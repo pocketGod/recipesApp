@@ -1,7 +1,7 @@
 import { Ingredient } from "./Ingredient";
 
 export interface Recipe {
-    recipe_id?: Number,
+    recipe_id?: string,
     title: String,
     category: String,
     description: String,

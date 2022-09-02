@@ -29,7 +29,7 @@ export class ShowRecipesComponent implements OnInit {
     });
   }
 
-  getRecipeByID(recipe_id: number): void {
+  getRecipeByID(recipe_id: string): void {
     //526222  - example (pizza)
     this.apiS.getRecipeByID(recipe_id).subscribe((data) => {
       console.log(data);
@@ -60,7 +60,7 @@ export class ShowRecipesComponent implements OnInit {
     });
   }
 
-  editRecipeData(recipe: Recipe, ID: number) {
+  editRecipeData(recipe: Recipe, ID: string) {
     // two paramaters because some reciepes wont have a convient to reach ID in the template. (all reciepes have ID in the DB)
     this.apiS.editRecipeData(recipe, ID).subscribe((rcpData) => {
       console.log('Update Succesfull');
@@ -69,7 +69,7 @@ export class ShowRecipesComponent implements OnInit {
     });
   }
 
-  deleteReciepe(ID: number) {
+  deleteReciepe(ID: string) {
     this.apiS.deleteRecipe(ID).subscribe((data) => {
       console.log(data);
       this.refreshRecipeArr();
@@ -81,4 +81,8 @@ export class ShowRecipesComponent implements OnInit {
       this.refreshRecipeArr();
     });
   }
+
+
+
+
 }

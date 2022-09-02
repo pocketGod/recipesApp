@@ -97,6 +97,9 @@ img {
   color: #ffbf38;
   cursor: pointer;
 }
+.already-liked{
+  color: #ffbf38;
+}
 
 .card-text {
   color: #b1b1b1;
