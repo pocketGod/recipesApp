@@ -5,26 +5,26 @@ import { Recipe } from '../interfaces/Recipe';
   name: 'tagFilter',
 })
 export class TagFilterPipe implements PipeTransform {
-  transform(
-    recipes: any,
-    filters: any
-  ): Recipe[] {
+  transform(recipes: Recipe[], searchTerm: string, tags?: string[]): Recipe[] {
+    // check null
+    if(!recipes?.length || searchTerm == undefined)
+      return recipes;
+    
+    let resArr = []
 
-    if(filters.every((x:boolean)=> x==false)) return recipes
+    // find search term in all fields
+    resArr = recipes.filter(res => JSON.stringify(res).includes(searchTerm))
 
-    let resArr = new Set()
+    // filter recipe by tags
+    // if(tags?.length)
+      // resArr = resArr.filter(res => {
+      //   for(let tag in tags)
+      //     // if(res.tagsArray.includes(tag))
+      //     //   return true;
 
-    let keyArr = Object.keys(filters)
-    let valArr = Object.values(filters)
+      //   return false
+      // })
 
-    recipes.forEach((rcp:Recipe)=>{
-      for (let i = 0; i < valArr.length; i++) {
-        if(rcp.tags.includes(keyArr[i]) && valArr[i]) resArr.add(rcp)
-      }
-    })
-
-
-
-    return Array.from(resArr) as Recipe[]
+    return resArr
   }
 }
