@@ -12,6 +12,7 @@
             type="text"
             placeholder="Search for ingredients or everything you like to eat"
             [(ngModel)]="recipeName"
+            [(ngModel)]="recipeTag"
           />
         </div>
       </div>
@@ -32,11 +33,13 @@
     </div>
 
     <div *ngIf="recipesArr | filter: 'title':recipeName as recipesArr">
-      <!--<div *ngIf="recipesArr | tagFilter: 'tags':recipeTag as recipesArr">-->
+      <!--<div
+        *ngIf="recipesArr | tagFilter: 'ingredients':recipeTag as recipesArr"
+      >-->
       <div class="d-flex gap-4 flex-wrap">
         <div class="card" *ngFor="let recipe of recipesArr">
-          <div class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">
-            <i (click)="likeRecipe(recipe.recipe_id!)" class="fa-solid fa-star mx-3 favorite"></i>
+          <div class="overlay">
+            <i class="fa-solid fa-star mx-3 favorite"></i>
           </div>
           <img src="{{ recipe.img }}" class="cardImg" />
           <div class="m-1">
@@ -49,22 +52,22 @@
       </div>
     </div>
   </div>
-</div>
 
-<div
-  class="offcanvas offcanvas-end"
-  tabindex="-1"
-  id="offcanvasRight"
-  aria-labelledby="offcanvasRightLabel"
->
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasRightLabel">Title</h5>
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
+  <div
+    class="offcanvas offcanvas-end"
+    tabindex="-1"
+    id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Title</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">...</div>
   </div>
-  <div class="offcanvas-body">...</div>
 </div>

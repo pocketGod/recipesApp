@@ -5,19 +5,13 @@ import { Recipe } from '../interfaces/Recipe';
   name: 'checkIngredients',
 })
 export class CheckIngredientsPipe implements PipeTransform {
-  transform(
-    recipes: Recipe[],
-    ingredients: keyof Recipe,
-    value: string
-  ): Recipe[] {
+  transform(recipes: Recipe[], value: string): Recipe[] {
     let resArr: Recipe[] = [];
     for (let recipe of recipes) {
-      if (
-        (recipe[ingredients] as string)
-          .toLowerCase()
-          .includes(value.toLowerCase())
-      ) {
-        resArr.push(recipe);
+      for (let ingredient of recipe.ingredients) {
+        if (ingredient.name == value) {
+          resArr.push(recipe);
+        }
       }
     }
     return resArr;
