@@ -62,5 +62,17 @@ export class SearchComponent implements OnInit {
     return x
   }
 
+  getSelectedTags():string[]{
+    let tagArr: string[] = []
+    let keys = Object.keys(this.tagFilters)
+    let vals = Object.values(this.tagFilters)
+    for (let i = 0; i < keys.length; i++) {
+      if (vals[i]) {
+        tagArr.push(keys[i])
+      }
+    }
+    return tagArr
+  }
+
 
 }

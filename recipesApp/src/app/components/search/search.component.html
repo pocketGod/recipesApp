@@ -44,7 +44,8 @@
       </div>
     </div>
 
-    <div *ngIf="recipesArr | filter: recipeName as recipesArr">
+    <div *ngIf="recipesArr | filter: recipeName : getSelectedTags() as recipesArr">
+      <div *ngIf="recipesArr">
       <div class="d-flex gap-4 flex-wrap">
         <div class="card" *ngFor="let recipe of recipesArr">
           <div (click)="likeRecipe(recipe.recipe_id!)" class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">
@@ -58,6 +59,7 @@
               <!--You have {{ recipe.ingredients  }} ingredients-->
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

@@ -7,7 +7,8 @@ import { Recipe } from '../interfaces/Recipe';
 export class FilterPipe implements PipeTransform {
   transform(
     recipes: Recipe[],
-    value: string
+    value: string,
+    tagArr: string[]
   ): Recipe[] {
     let resArr = new Set()
     for (let recipe of recipes) {
@@ -17,7 +18,18 @@ export class FilterPipe implements PipeTransform {
       })
     }
 
+    if(tagArr.length == 0) return Array.from(resArr) as  Recipe[]
 
-    return Array.from(resArr) as  Recipe[]
+    let filteredArr = new Set()
+
+    resArr.forEach((rcp:any)=>{
+      tagArr.forEach((tag)=>{
+        if(rcp.tags.includes(tag)) filteredArr.add(rcp)
+      })
+    })
+
+
+
+    return Array.from(filteredArr) as  Recipe[]
   }
 }

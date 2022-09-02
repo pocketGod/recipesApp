@@ -16,14 +16,14 @@ export class TagFilterPipe implements PipeTransform {
     resArr = recipes.filter(res => JSON.stringify(res).includes(searchTerm))
 
     // filter recipe by tags
-    // if(tags?.length)
-      // resArr = resArr.filter(res => {
-      //   for(let tag in tags)
-      //     // if(res.tagsArray.includes(tag))
-      //     //   return true;
+    if(tags?.length)
+      resArr = resArr.filter(res => {
+        for(let tag in tags)
+          if(res.tags.includes(tag))
+            return true
 
-      //   return false
-      // })
+        return false
+      })
 
     return resArr
   }
