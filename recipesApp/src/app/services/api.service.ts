@@ -33,6 +33,9 @@ export class ApiService {
   getAllTags():Observable<string[]>{
     return this.http.get(this.baseURL + `recipes/alltags`) as Observable<string[]>
   }
+  getAllIng():Observable<string[]>{
+    return this.http.get(this.baseURL + `recipes/allingredients`) as Observable<string[]>
+  }
 
 
 

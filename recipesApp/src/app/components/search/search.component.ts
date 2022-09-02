@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   tags: String[] = [];
   recipeName: string = '';
   recipeTag: string = '';
-  ingredients: string = '';
+  allIngredients: string[] = [];
   showMoreTags: boolean = false;
 
   recipesArr: Recipe[] = [];
@@ -35,6 +35,10 @@ export class SearchComponent implements OnInit {
     this.apiServie.getRecipes().subscribe((tagsData) => {
       this.recipesArr = tagsData;
     });
+
+    this.apiServie.getAllIng().subscribe((ingData)=>{
+      this.allIngredients = ingData
+    })
   }
 
   likeRecipe(ID:string){

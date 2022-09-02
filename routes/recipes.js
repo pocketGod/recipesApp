@@ -158,7 +158,7 @@ router.get('/alltags', async(req,res)=>{
             })
         })
 
-        if(allTagsArr.length == 0) return res.status(400).send('No tags ere found')
+        if(allTagsArr.length == 0) return res.status(400).send('No tags were found')
 
         let map = allTagsArr.reduce((p, c)=> {
             p[c] = (p[c] || 0) + 1
@@ -171,6 +171,36 @@ router.get('/alltags', async(req,res)=>{
 
 
         res.status(200).send(chosenTagsArr)
+
+    } catch (err) {
+        res.status(400).send('ERROR in GET Recipes by TAG')
+    }
+})
+
+//get all of the ingredients used on recipes in db
+router.get('/allingredients', async(req,res)=>{
+    try {
+        let recipes = await Recipe.find({})
+        if(recipes.length == 0) return res.status(400).send('No Recipes in DB')
+
+        let allIngredientsArr = []
+        let doubleIngArr = []
+        recipes.forEach((rcp)=>{
+            rcp.ingredients.forEach((ing)=>{
+                allIngredientsArr.forEach((indIng)=>{
+                    if(ing.name == indIng.name) doubleIngArr.push(ing)
+                })
+                    allIngredientsArr.push(ing)
+            })
+        })
+
+        doubleIngArr.forEach((dblIng)=>{
+            allIngredientsArr.splice(allIngredientsArr.indexOf(dblIng), 1)
+        })
+
+        if(allIngredientsArr.length == 0) return res.status(400).send('No ingredients ere found')
+
+        res.status(200).send(allIngredientsArr)
 
     } catch (err) {
         res.status(400).send('ERROR in GET Recipes by TAG')
