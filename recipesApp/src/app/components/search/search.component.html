@@ -33,9 +33,9 @@
     </div>
 
     <div *ngIf="recipesArr | filter: 'title':recipeName as recipesArr">
-      <!--<div
-        *ngIf="recipesArr | tagFilter: 'ingredients':recipeTag as recipesArr"
-      >-->
+      <div
+        *ngIf="recipesArr | checkIngredients: recipeName"
+      >
       <div class="d-flex gap-4 flex-wrap">
         <div class="card" *ngFor="let recipe of recipesArr">
           <div class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">
