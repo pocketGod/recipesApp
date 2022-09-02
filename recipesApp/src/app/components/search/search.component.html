@@ -12,7 +12,6 @@
             type="text"
             placeholder="Search for ingredients or everything you like to eat"
             [(ngModel)]="recipeName"
-            [(ngModel)]="recipeTag"
           />
         </div>
       </div>
@@ -24,7 +23,7 @@
         <div *ngIf="showMoreTags">
           <ul class="tags">
             <li *ngFor="let tag of tags">
-              <input type="checkbox" id="{{ tag }}" value="Easy to make" />
+              <input type="checkbox" id="{{ tag }}" value="{{tag}}" />
               <label for="{{ tag }}">{{ tag }}</label>
             </li>
           </ul>
@@ -33,13 +32,11 @@
     </div>
 
     <div *ngIf="recipesArr | filter: recipeName as recipesArr">
-      <div
-        *ngIf="recipesArr | checkIngredients: recipeName"
-      >
+      <div *ngIf="recipesArr">
       <div class="d-flex gap-4 flex-wrap">
         <div class="card" *ngFor="let recipe of recipesArr">
-          <div class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">
-            <i (click)="likeRecipe(recipe.recipe_id!)" class="fa-solid fa-star mx-3 favorite"></i>
+          <div (click)="likeRecipe(recipe.recipe_id!)" class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">
+            <i class="fa-solid fa-star mx-3 favorite"></i>
           </div>
           
           <img src="{{ recipe.img }}" class="cardImg" />

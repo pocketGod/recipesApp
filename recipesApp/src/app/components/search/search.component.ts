@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { string } from 'joi';
 import { Recipe } from 'src/app/interfaces/Recipe';
 import { ApiService } from 'src/app/services/api.service';
@@ -11,13 +11,14 @@ import { ApiService } from 'src/app/services/api.service';
 export class SearchComponent implements OnInit {
   userName: string = 'UserName';
   recipesCounter: number = 99;
-  tags: String[] = [];
+  tags: string[] = [];
   recipeName: string = '';
-  recipeTag: string = '';
   allIngredients: string[] = [];
   showMoreTags: boolean = false;
 
   recipesArr: Recipe[] = [];
+
+  tagFilters: { [key: string]: boolean } = {}
 
   constructor(private apiServie: ApiService) {}
 
@@ -28,7 +29,10 @@ export class SearchComponent implements OnInit {
 
     this.apiServie.getAllTags().subscribe((tagsData) => {
       for (let i = 0; i < 4; i++) {
-        this.tags = tagsData;
+        this.tags = tagsData
+        this.tags.forEach((tag)=>{
+          this.tagFilters[tag] = false
+        })
       }
     });
 
@@ -48,4 +52,22 @@ export class SearchComponent implements OnInit {
   checkIfThisRecipeIsLiked(ID:string):boolean{
     return this.apiServie.checkIfThisRecipeIsLiked(ID)
   }
+
+  onTagCheckboxChange(val:string){
+    this.tagFilters[val] = !this.tagFilters[val]
+  }
+
+  // onTagCheck(val:string){
+  //   this.recipesArr.forEach((rcp)=>{
+  //     rcp.tags.forEach((tag)=>{
+  //       if (tag == val){
+  //         let index = this.recipesArr.indexOf(rcp)
+  //         this.recipesArr.splice(index, 1)
+  //       }
+  //     })
+  //   })
+  // }
+
+
+
 }

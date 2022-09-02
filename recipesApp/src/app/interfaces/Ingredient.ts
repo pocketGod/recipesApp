@@ -1,10 +1,10 @@
 export interface Ingredient {
-    name: String,
+    name: string,
     mandatory: Boolean,
     mainIngredient: Boolean,
-    amount: String,
-    similar: String[],
-    pic: String,
-    _id?: String,
-    __v?: String
+    amount: string,
+    similar: string[],
+    pic: string,
+    _id?: string,
+    __v?: string
 }

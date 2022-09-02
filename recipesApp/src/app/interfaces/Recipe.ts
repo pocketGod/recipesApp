@@ -2,15 +2,15 @@ import { Ingredient } from "./Ingredient";
 
 export interface Recipe {
     recipe_id?: string,
-    title: String,
-    category: String,
-    description: String,
-    tags: String[],
+    title: string,
+    category: string,
+    description: string,
+    tags: string[],
     ingredients: Ingredient[],
-    img: String,
-    mainTaste: String[],
+    img: string,
+    mainTaste: string[],
     rating: number,
-    cookTime: String,
-    _id?: String,
-    __v?: String
+    cookTime: string,
+    _id?: string,
+    __v?: string
 } 

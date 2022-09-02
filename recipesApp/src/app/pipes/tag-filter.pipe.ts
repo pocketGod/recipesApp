@@ -6,16 +6,24 @@ import { Recipe } from '../interfaces/Recipe';
 })
 export class TagFilterPipe implements PipeTransform {
   transform(
-    recipes: Recipe[],
-    recipeTag: keyof Recipe,
-    value: string
+    recipes: any,
+    filters: any
   ): Recipe[] {
-    let resArr: Recipe[] = [];
-    for (let recipe of recipes) {
-      if ((recipe[recipeTag] as string).toLowerCase().includes(value)) {
-        resArr.push(recipe);
-      }
+
+    if(!filters) return recipes
+
+    let resArr = new Set()
+
+    let keyArr = Object.keys(filters)
+    let valArr = Object.values(filters)
+
+    if(valArr.every( (filter: any)  => !filter)) return recipes
+    else{
+      return recipes[2]
     }
-    return resArr;
+
+
+
+    return Array.from(resArr) as Recipe[]
   }
 }

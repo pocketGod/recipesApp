@@ -1,8 +1,8 @@
 export interface User{
-    name?: String,
-    email: String,
-    password: String,
+    name?: string,
+    email: string,
+    password: string,
     admin?: Boolean,
-    _id?: String,
-    __v?: String
+    _id?: string,
+    __v?: string
 }
