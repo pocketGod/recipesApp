@@ -24,7 +24,6 @@
         >
           Show Tags
         </button>
-<<<<<<< HEAD
         <div *ngIf="showMoreTags">
           <ul class="tags">
             <li *ngFor="let tag of tags">
@@ -33,21 +32,10 @@
             </li>
           </ul>
         </div>
-=======
-      </div>
-      <div *ngIf="showMoreTags" class="col-lg-11 my-2">
-        <ul class="tags">
-          <li *ngFor="let tag of tags">
-            <input type="checkbox" id="{{ tag }}" value="Easy to make" />
-            <label for="{{ tag }}">{{ tag }}</label>
-          </li>
-        </ul>
->>>>>>> dec91d41ba71567e575528856ca79cbeeb375df6
       </div>
     </div>
 
     <div *ngIf="recipesArr | filter: recipeName as recipesArr">
-<<<<<<< HEAD
       <div *ngIf="recipesArr">
       <div class="d-flex gap-4 flex-wrap">
         <div class="card" *ngFor="let recipe of recipesArr">
@@ -60,27 +48,6 @@
             <div class="card-titles">{{ recipe.title }}</div>
             <div class="card-text small mb-2">
               <!--You have {{ recipe.ingredients  }} ingredients-->
-=======
-      <div *ngIf="recipesArr | checkIngredients: recipeName">
-        <div class="d-flex gap-4 flex-wrap">
-          <div class="card" *ngFor="let recipe of recipesArr">
-            <div
-              class="overlay"
-              [ngClass]="{
-                'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)
-              }"
-              (click)="likeRecipe(recipe.recipe_id!)"
-            >
-              <i class="fa-solid fa-star mx-3 favorite"></i>
-            </div>
-
-            <img src="{{ recipe.img }}" class="cardImg" />
-            <div class="m-1">
-              <div class="card-titles">{{ recipe.title }}</div>
-              <div class="card-text small mb-2">
-                <!--You have {{ recipe.ingredients  }} ingredients-->
-              </div>
->>>>>>> dec91d41ba71567e575528856ca79cbeeb375df6
             </div>
           </div>
         </div>
