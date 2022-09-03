@@ -51,7 +51,7 @@
       <div *ngIf="recipesArr">
         <div class="d-flex gap-5 flex-wrap" id="allTags">
           <div class="card" *ngFor="let recipe of recipesArr">
-            {{updateArrLength(recipesArr)}}
+            <!-- {{updateArrLength(recipesArr)}} -->
             <div
               (click)="likeRecipe(recipe.recipe_id!)"
               class="overlay"

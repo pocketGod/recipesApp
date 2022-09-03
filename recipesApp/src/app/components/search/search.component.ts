@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { string } from 'joi';
 import { Recipe } from 'src/app/interfaces/Recipe';
 import { ApiService } from 'src/app/services/api.service';
@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnChanges {
   userName: string = 'UserName';
   recipesCounter: number = 99;
   tags: string[] = [];
@@ -37,6 +37,7 @@ export class SearchComponent implements OnInit {
       }
     });
 
+
     this.apiServie.getRecipes().subscribe((tagsData) => {
       this.recipesArr = tagsData;
     });
@@ -44,6 +45,10 @@ export class SearchComponent implements OnInit {
     this.apiServie.getAllIng().subscribe((ingData) => {
       this.allIngredients = ingData;
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges):void{
+    
   }
 
   likeRecipe(ID: string) {
