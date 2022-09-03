@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { string } from 'joi';
 import { Recipe } from 'src/app/interfaces/Recipe';
 import { ApiService } from 'src/app/services/api.service';
@@ -23,6 +23,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private apiServie: ApiService) {}
 
+
   ngOnInit(): void {
     if (localStorage.getItem('likesArr')==null) {
       localStorage.setItem('likesArr', '[]')
@@ -44,7 +45,12 @@ export class SearchComponent implements OnInit {
     this.apiServie.getAllIng().subscribe((ingData)=>{
       this.allIngredients = ingData
     })
+
+    this.updateRecipeArrLength(this.recipesArr)
   }
+
+
+
 
   likeRecipe(ID:string){
     this.apiServie.addLikedRecipe(ID)
@@ -72,6 +78,14 @@ export class SearchComponent implements OnInit {
       }
     }
     return tagArr
+  }
+
+  getRecipeArrLength():number{
+    return this.recipesCounter
+  }
+
+  updateRecipeArrLength(rcpArr: Recipe[]):void{
+    this.recipesCounter = rcpArr.length
   }
 
 
