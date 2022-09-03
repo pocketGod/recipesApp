@@ -56,7 +56,7 @@ h3 {
   padding: 10px;
   outline: none;
   border: none;
-  width: 335px;
+  width: 345px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -70,7 +70,7 @@ h3 {
 }
 
 img {
-  width: 314px;
+  width: 325px;
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
@@ -93,7 +93,7 @@ img {
   padding: 20px;
   border-radius: 50px;
   backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .overlay:hover {

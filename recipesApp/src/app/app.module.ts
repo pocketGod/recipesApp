@@ -11,7 +11,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { TagFilterPipe } from './pipes/tag-filter.pipe';
 import { CheckIngredientsPipe } from './pipes/check-ingredients.pipe';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,13 @@ import { CheckIngredientsPipe } from './pipes/check-ingredients.pipe';
     TagFilterPipe,
     CheckIngredientsPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
