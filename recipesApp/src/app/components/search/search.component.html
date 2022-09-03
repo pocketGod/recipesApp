@@ -3,8 +3,8 @@
     <h3>Welcome Back, {{ userName }}</h3>
     <p class="recipesCount">You can make {{ recipesCounter }} recipes</p>
 
-    <div class="serch my-4 d-flex row justify-content-between">
-      <div class="col-lg-8">
+    <div class="my-4 d-flex row justify-content-between">
+      <div class="col col-lg-9 serch">
         <div class="input-icons">
           <i class="fa-solid fa-magnifying-glass icon"></i>
           <input
@@ -15,71 +15,60 @@
           />
         </div>
       </div>
-      <div class="col my-1 small">
-        <span class="text-muted">Filter by Tags:</span>
+      <div class="col my-1 small bg-dar">
+        <span class="text-muted">Filter with Tags:</span>
         <button
           type="checkbox"
           class="btn m-1"
-          (click)="showMoreTags = !showMoreTags"
+          id="tags"
+          (click)="this.showMoreTags = !this.showMoreTags"
         >
           Show Tags
         </button>
-        <div *ngIf="showMoreTags">
-          <!-- <form>
-            <div *ngFor="let tag of tags">
-              <input name="{{ tag }}" [(ngModel)]="tagFilters[tag]" type="checkbox" id="{{ tag }}" value="{{tag}}" (change)="onTagCheckboxChange($event)" />
-              <label for="{{ tag }}">{{ tag }}</label>
-            </div>
-          </form> -->
-
-
-          <ul class="tags">
-            <li *ngFor="let tag of tags">
-              <input name="{{ tag }}" [(ngModel)]="tagFilters[tag]" type="checkbox" id="{{ tag }}" value="{{tag}}" (change)="onTagCheckboxChange($event)"/>
-              <label for="{{ tag }}">{{ tag }}</label>
-            </li>
-          </ul>
-        </div>
-        
+      </div>
+      <div *ngIf="showMoreTags" class="my-2">
+        <ul class="tags">
+          <li *ngFor="let tag of tags">
+            <input
+              name="{{ tag }}"
+              [(ngModel)]="tagFilters[tag]"
+              type="checkbox"
+              id="{{ tag }}"
+              value="{{ tag }}"
+              (change)="onTagCheckboxChange($event)"
+            />
+            <label for="{{ tag }}">{{ tag }}</label>
+          </li>
+        </ul>
       </div>
     </div>
 
-    <div *ngIf="recipesArr | filter: recipeName : getSelectedTags() as recipesArr">
+    <div
+      *ngIf="recipesArr | filter: recipeName:getSelectedTags() as recipesArr"
+    >
       <div *ngIf="recipesArr">
-      <div class="d-flex gap-4 flex-wrap">
-        <div class="card" *ngFor="let recipe of recipesArr">
-          <div (click)="likeRecipe(recipe.recipe_id!)" class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">
-            <i class="fa-solid fa-star mx-3 favorite"></i>
-          </div>
-          
-          <img src="{{ recipe.img }}" class="cardImg" />
-          <div class="m-1">
-            <div class="card-titles">{{ recipe.title }}</div>
-            <div class="card-text small mb-2">
-              <!--You have {{ recipe.ingredients  }} ingredients-->
+        <div class="d-flex gap-5 flex-wrap" id="allTags">
+          <div class="card" *ngFor="let recipe of recipesArr">
+            <div
+              (click)="likeRecipe(recipe.recipe_id!)"
+              class="overlay"
+              [ngClass]="{
+                'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)
+              }"
+            >
+              <i class="fa-solid fa-star mx-3 favorite"></i>
+            </div>
+
+            <img src="{{ recipe.img }}" class="cardImg" />
+            <div class="m-1">
+              <div class="card-titles">{{ recipe.title }}</div>
+              <div class="card-text small mb-2">
+                <!--You have {{ recipe.ingredients  }} ingredients-->
+              </div>
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
-  </div>
-
-  <div
-    class="offcanvas offcanvas-end"
-    tabindex="-1"
-    id="offcanvasRight"
-    aria-labelledby="offcanvasRightLabel"
-  >
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasRightLabel">Title</h5>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-      ></button>
-    </div>
-    <div class="offcanvas-body">...</div>
   </div>
 </div>

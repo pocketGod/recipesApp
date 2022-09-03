@@ -15,25 +15,24 @@ export class SearchComponent implements OnInit {
   recipeName: string = '';
   allIngredients: string[] = [];
   showMoreTags: boolean = false;
-
   recipesArr: Recipe[] = [];
 
-  @Input() tagFilters: { [key: string]: boolean } = {}
-  filteredByTagRecipes: Recipe[] = []
+  @Input() tagFilters: { [key: string]: boolean } = {};
+  filteredByTagRecipes: Recipe[] = [];
 
   constructor(private apiServie: ApiService) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('likesArr')==null) {
-      localStorage.setItem('likesArr', '[]')
+    if (localStorage.getItem('likesArr') == null) {
+      localStorage.setItem('likesArr', '[]');
     }
 
     this.apiServie.getAllTags().subscribe((tagsData) => {
       for (let i = 0; i < 4; i++) {
-        this.tags = tagsData
-        this.tags.forEach((tag)=>{
-          this.tagFilters[tag] = false
-        })
+        this.tags = tagsData;
+        this.tags.forEach((tag) => {
+          this.tagFilters[tag] = false;
+        });
       }
     });
 
@@ -41,38 +40,36 @@ export class SearchComponent implements OnInit {
       this.recipesArr = tagsData;
     });
 
-    this.apiServie.getAllIng().subscribe((ingData)=>{
-      this.allIngredients = ingData
-    })
+    this.apiServie.getAllIng().subscribe((ingData) => {
+      this.allIngredients = ingData;
+    });
   }
 
-  likeRecipe(ID:string){
-    this.apiServie.addLikedRecipe(ID)
+  likeRecipe(ID: string) {
+    this.apiServie.addLikedRecipe(ID);
   }
 
-  checkIfThisRecipeIsLiked(ID:string):boolean{
-    return this.apiServie.checkIfThisRecipeIsLiked(ID)
+  checkIfThisRecipeIsLiked(ID: string): boolean {
+    return this.apiServie.checkIfThisRecipeIsLiked(ID);
   }
 
-  onTagCheckboxChange(e:any){
-    let x = this.tagFilters[e.srcElement.value as string]
-    x = x?false:true
+  onTagCheckboxChange(e: any) {
+    let x = this.tagFilters[e.srcElement.value as string];
+    x = x ? false : true;
     // console.log(x)
     // console.log(this.tagFilters)
-    return x
+    return x;
   }
 
-  getSelectedTags():string[]{
-    let tagArr: string[] = []
-    let keys = Object.keys(this.tagFilters)
-    let vals = Object.values(this.tagFilters)
+  getSelectedTags(): string[] {
+    let tagArr: string[] = [];
+    let keys = Object.keys(this.tagFilters);
+    let vals = Object.values(this.tagFilters);
     for (let i = 0; i < keys.length; i++) {
       if (vals[i]) {
-        tagArr.push(keys[i])
+        tagArr.push(keys[i]);
       }
     }
-    return tagArr
+    return tagArr;
   }
-
-
 }
