@@ -73,4 +73,8 @@ export class SearchComponent implements OnInit {
     }
     return tagArr;
   }
+
+  updateArrLength(arr:Recipe[]){
+    this.recipesCounter = arr.length
+  }
 }
