@@ -50,20 +50,6 @@
       *ngIf="recipesArr | filter: recipeName:getSelectedTags() as recipesArr"
     >
       <div *ngIf="recipesArr">
-<<<<<<< HEAD
-      <div class="d-flex gap-4 flex-wrap">
-        <div class="card" *ngFor="let recipe of recipesArr">
-        {{updateRecipeArrLength(recipesArr)}}
-          <div (click)="likeRecipe(recipe.recipe_id!)" class="overlay" [ngClass]="{'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)}">
-            <i class="fa-solid fa-star mx-3 favorite"></i>
-          </div>
-          
-          <img src="{{ recipe.img }}" class="cardImg" />
-          <div class="m-1">
-            <div class="card-titles">{{ recipe.title }}</div>
-            <div class="card-text small mb-2">
-              <!--You have {{ recipe.ingredients  }} ingredients-->
-=======
         <div class="d-flex gap-5 flex-wrap" id="allTags">
           <div class="card" *ngFor="let recipe of recipesArr">
             <div
@@ -82,7 +68,6 @@
               <div class="card-text small mb-2">
                 <!--You have {{ recipe.ingredients  }} ingredients-->
               </div>
->>>>>>> 71724b9b75aba2bafe35acca07b37a69560f8eea
             </div>
           </div>
         </div>
