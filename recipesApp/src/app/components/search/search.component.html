@@ -1,9 +1,9 @@
 <div class="container-fluid my-2">
   <div class="container px-3 py-2">
     <h3>Welcome Back, {{ userName }}</h3>
-    <p class="recipesCount">You can make 
+    <!-- <p class="recipesCount">You can make 
       <span [innerHTML]="recipesCounter"></span>
-       recipes</p>
+       recipes</p> -->
 
     <div class="my-4 d-flex row justify-content-between">
       <div class="col col-lg-9 serch">
@@ -48,8 +48,10 @@
     <div
       *ngIf="recipesArr | filter: recipeName:getSelectedTags() as recipesArr"
     >
-            <!-- {{updateArrLength(recipesArr)}} -->
-      <div *ngIf="recipesArr">
+    <!-- סורי שהזזתי את זה לכאן, פשוט עניין העדכון ערך לאחר קליק נוסף של העכבר נפתר רק כאשר זה זז לתוך התנאי -->
+        <p class="recipesCount mb-3">You can make 
+          <span [innerHTML]="recipesArr.length"></span>
+           recipes</p>
         <div class="d-flex gap-5 flex-wrap" id="allTags">
           <div class="card" *ngFor="let recipe of recipesArr">
             <div
@@ -70,7 +72,6 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
