@@ -48,10 +48,10 @@
     <div
       *ngIf="recipesArr | filter: recipeName:getSelectedTags() as recipesArr"
     >
+            <!-- {{updateArrLength(recipesArr)}} -->
       <div *ngIf="recipesArr">
         <div class="d-flex gap-5 flex-wrap" id="allTags">
           <div class="card" *ngFor="let recipe of recipesArr">
-            <!-- {{updateArrLength(recipesArr)}} -->
             <div
               (click)="likeRecipe(recipe.recipe_id!)"
               class="overlay"
