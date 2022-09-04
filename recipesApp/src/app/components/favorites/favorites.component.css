@@ -106,3 +106,16 @@ h3 {
 .smallMedia {
   display: none;
 }
+
+.dropdown {
+  display: inline-block;
+}
+
+.btn {
+  background-color: white;
+  border-radius: 50px;
+  font-size: 10pt;
+  border: none;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px;
+}

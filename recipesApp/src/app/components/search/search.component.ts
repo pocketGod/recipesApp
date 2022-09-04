@@ -6,11 +6,10 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { Recipe } from 'src/app/interfaces/Recipe';
 import { ApiService } from 'src/app/services/api.service';
 import { RecipeDetailsComponent } from '../recipe-details/recipe-details.component';
-import { ShowRecipesComponent } from '../show-recipes/show-recipes.component';
 
 @Component({
   selector: 'app-search',

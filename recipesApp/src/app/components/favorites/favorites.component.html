@@ -4,13 +4,44 @@
 
     <div *ngIf="recipesArr | filter: '':['']:'favorites' as recipesArr">
       <div *ngIf="recipesArr.length != 0; else noFavorites">
-        <p class="recipesCount mb-3">
-          You have
-          <span class="count" [innerHTML]="recipesArr.length"></span>
-          Favorites
-        </p>
+        <div class="d-flex">
+          <div class="col-2 my-1">
+            <p class="recipesCount mb-3">
+              You have
+              <span class="count" [innerHTML]="recipesArr.length"></span>
+              Favorites
+            </p>
+          </div>
+
+          <div class="col-4">
+            <span class="recipesCount my-1">Sort by: </span>
+            <div class="dropdown">
+              <button
+                class="btn dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ getSort() }}
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" (click)="sort('')">All</a></li>
+                <li>
+                  <a class="dropdown-item" (click)="sort('title')">Title</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="sort('Rating')">Rating</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div class="d-flex gap-5 flex-wrap" id="allTags">
-          <div class="card" *ngFor="let recipe of recipesArr" @fade>
+          <div
+            class="card"
+            *ngFor="let recipe of recipesArr | orderBy: setOrder"
+            @fade
+          >
             <div
               class="overlay"
               (click)="unlikeRecipe(recipe.recipe_id!)"
@@ -20,7 +51,11 @@
             >
               <i class="fa-solid fa-xmark"></i>
             </div>
-            <img src="{{ recipe.img }}" class="cardImg" />
+            <img
+              src="{{ recipe.img }}"
+              class="cardImg"
+              (click)="openOffCanvas(recipe)"
+            />
             <div class="m-1">
               <h5 class="card-titles">{{ recipe.title }}</h5>
               <div class="d-flex justify-content-between">
