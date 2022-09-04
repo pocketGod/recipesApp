@@ -32,6 +32,10 @@ export class FavoritesComponent implements OnInit {
   constructor(private apiServie: ApiService) {}
 
   ngOnInit(): void {
+    this.checkFvorites();
+  }
+
+  checkFvorites() {
     if (!localStorage.getItem('likesArr')) {
       localStorage.setItem('likesArr', '[]');
     }
@@ -52,6 +56,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   checkIfThisRecipeIsLiked(ID: string): boolean {
+    this.checkFvorites();
     return this.apiServie.checkIfThisRecipeIsLiked(ID);
   }
 }
