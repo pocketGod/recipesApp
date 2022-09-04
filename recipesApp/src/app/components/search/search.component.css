@@ -116,7 +116,7 @@ select:hover {
 }
 
 .img {
-  width: 325px;
+  max-width: 325px;
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
@@ -143,14 +143,14 @@ select:hover {
 }
 
 .overlay:hover {
-  color: rgb(222, 72, 72);
+  color: #ffbf38;
   transform: scale(1.2);
   cursor: pointer;
 }
 
 .already-liked {
-  color: white;
-  background-color: #393f94;
+  color: #393f94;
+  background-color: #ffffff70;
 }
 
 .card:hover .overlay {
@@ -207,7 +207,7 @@ ul {
 }
 
 .tags li input[type="checkbox"]:checked + label {
-  background-color: #393f94;
+  background-color: #393f94 !important;
   color: #fff;
 }
 

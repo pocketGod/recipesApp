@@ -22,7 +22,7 @@ import { ShowRecipesComponent } from '../show-recipes/show-recipes.component';
         style({ opacity: 0, transform: 'translateY(20px)' }),
         animate(500),
       ]),
-      transition('* => void', [
+      transition('* <=> void', [
         animate(400, style({ opacity: 0, transform: 'translateY(20px)' })),
       ]),
     ]),
@@ -107,7 +107,13 @@ export class SearchComponent implements OnInit, OnChanges {
 
   sort(order: any) {
     this.setOrder = order;
+    console.log(this.setOrder);
     this.isDescOrder;
+  }
+
+  getSort(): string {
+    if (this.setOrder == '') return 'All';
+    else return this.setOrder;
   }
 
   closeMsgAction() {

@@ -68,17 +68,17 @@ h3 {
   padding: 20px;
   border-radius: 50px;
   backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #393f94b1;
 }
 
 .overlay:hover {
-  color: rgb(222, 72, 72);
+  color: rgb(255, 255, 255);
   transform: scale(1.2);
   cursor: pointer;
 }
 
 .already-liked {
-  color: rgb(222, 72, 72);
+  color: rgb(255, 255, 255);
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 

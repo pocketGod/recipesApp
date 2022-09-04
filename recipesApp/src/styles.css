@@ -42,6 +42,18 @@
     display: none;
   }
 
+  .welcomeImg {
+    display: none !important;
+  }
+
+  .welcome {
+    background-size: cover !important;
+  }
+
+  .welcomeMsg {
+    margin: 20px !important;
+  }
+
   .smallMedia {
     display: block;
   }

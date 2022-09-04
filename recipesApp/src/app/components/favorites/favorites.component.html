@@ -11,6 +11,15 @@
         </p>
         <div class="d-flex gap-5 flex-wrap" id="allTags">
           <div class="card" *ngFor="let recipe of recipesArr" @fade>
+            <div
+              class="overlay"
+              (click)="likeRecipe(recipe.recipe_id!)"
+              [ngClass]="{
+                'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)
+              }"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </div>
             <img src="{{ recipe.img }}" class="cardImg" />
             <div class="m-1">
               <h5 class="card-titles">{{ recipe.title }}</h5>

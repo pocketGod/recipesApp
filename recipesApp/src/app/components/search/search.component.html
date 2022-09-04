@@ -1,6 +1,6 @@
 <div class="container-fluid my-2">
   <div class="container px-3 py-2">
-    <div class="welcome mb-3 d-flex" *ngIf="closeMsg == true">
+    <div class="welcome mb-3 d-flex" *ngIf="closeMsg == true" @fadeTags>
       <div>
         <button class="closeBtn" (click)="closeMsgAction()">
           <i class="fa-regular fa-circle-xmark"></i>
@@ -40,6 +40,7 @@
       </div>
       <div class="col col-lg-2 small my-2">
         <span class="text-muted">Sort by: </span>
+<<<<<<< HEAD
         <select name="dropdownOption" id="dropdownOption">
           <option value="Name" [value]="sort('title')">Name</option>
           <option value="Rating" [value]="sort('rating')">Rating</option>
@@ -84,20 +85,79 @@
             [ngClass]="{
               'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)
             }"
+=======
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+>>>>>>> bc13ae2 (..)
           >
-            <i class="fa-solid fa-heart"></i>
-          </div>
+            {{ getSort() }}
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="sort('')">All</a></li>
+            <li><a class="dropdown-item" (click)="sort('title')">title</a></li>
+            <li>
+              <a class="dropdown-item" (click)="sort('rating')">rating</a>
+            </li>
+          </ul>
+        </div>
 
-          <img src="{{ recipe.img }}" class="cardImg img" />
-          <div class="m-1">
-            <h5 class="card-titles">{{ recipe.title }}</h5>
-            <div class="d-flex justify-content-between">
-              <p class="small card-text">
-                You have {{ recipe.description }} ingredients
-              </p>
-              <p class="text-muted small">
-                <i class="fa-solid fa-star mx-1 rating"></i>{{ recipe.rating }}
-              </p>
+        <div *ngIf="showMoreTags" class="my-2" @fadeTags>
+          <ul class="tags">
+            <li *ngFor="let tag of tags">
+              <input
+                name="{{ tag }}"
+                [(ngModel)]="tagFilters[tag]"
+                type="checkbox"
+                id="{{ tag }}"
+                value="{{ tag }}"
+                (change)="onTagCheckboxChange($event)"
+              />
+              <label for="{{ tag }}">{{ tag }}</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        *ngIf="recipesArr | filter: recipeName:getSelectedTags() as recipesArr"
+      >
+        <p class="recipesCount my-4">
+          You can make
+          <span class="count" [innerHTML]="recipesArr.length"></span>
+          recipes
+        </p>
+        <div class="d-flex gap-5 flex-wrap" id="allTags">
+          <div
+            class="card"
+            *ngFor="let recipe of recipesArr | orderBy: setOrder:isDescOrder"
+            @fade
+          >
+            <div
+              (click)="likeRecipe(recipe.recipe_id!)"
+              class="overlay"
+              [ngClass]="{
+                'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)
+              }"
+            >
+              <i class="fa-solid fa-heart"></i>
+            </div>
+
+            <img src="{{ recipe.img }}" class="cardImg img" />
+            <div class="m-1">
+              <h5 class="card-titles">{{ recipe.title }}</h5>
+              <div class="d-flex justify-content-between">
+                <p class="small card-text">
+                  You have {{ recipe.description }} ingredients
+                </p>
+                <p class="text-muted small">
+                  <i class="fa-solid fa-star mx-1 rating"></i
+                  >{{ recipe.rating }}
+                </p>
+              </div>
             </div>
           </div>
         </div>
