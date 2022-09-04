@@ -15,15 +15,47 @@
   background-color: rgba(255, 255, 255, 0.5);
   padding: 10px;
   border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
 h3 {
   margin: 5px;
   font-size: 16pt;
+  color: #393f94;
+  text-transform: capitalize;
+}
+
+th {
+  font-size: 12pt;
+  color: rgb(110, 110, 110);
+}
+
+.header p {
+  margin: 5px;
+  color: gray;
 }
 
 :host {
   scroll-behavior: auto;
   min-height: auto;
   overflow: auto;
+}
+
+.header p::first-letter,
+.category,
+.mainTaste,
+td::first-letter {
+  text-transform: capitalize;
+}
+
+.col {
+  font-size: 10pt;
+  color: rgb(180, 180, 180);
+}
+
+.col span {
+  color: #393f94;
+  font-weight: 600;
+  display: block;
 }

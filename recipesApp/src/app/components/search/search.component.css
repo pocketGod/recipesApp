@@ -115,6 +115,11 @@ select:hover {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 }
 
+.card-titles,
+.card-text::first-letter {
+  text-transform: capitalize;
+}
+
 .img {
   max-width: 325px;
   height: 200px;
@@ -249,16 +254,6 @@ ul {
   opacity: 0;
 }
 
-.btn::before {
+.dropdown {
   display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 14px;
-  padding: 2px 4px;
-  content: "\f055";
-  transition: transform 0.3s ease-in-out;
 }
