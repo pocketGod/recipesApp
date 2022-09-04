@@ -99,7 +99,11 @@
               <i class="fa-solid fa-heart"></i>
             </div>
 
-            <img src="{{ recipe.img }}" class="cardImg img" />
+            <img
+              src="{{ recipe.img }}"
+              class="cardImg img"
+              (click)="openOffCanvas(recipe)"
+            />
             <div class="m-1">
               <h5 class="card-titles">{{ recipe.title }}</h5>
               <div class="d-flex justify-content-between">
