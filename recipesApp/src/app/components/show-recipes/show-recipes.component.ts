@@ -81,8 +81,4 @@ export class ShowRecipesComponent implements OnInit {
       this.refreshRecipeArr();
     });
   }
-
-
-
-
 }

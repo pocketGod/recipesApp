@@ -1,27 +1,55 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { string } from 'joi';
+import { animate, style, transition, trigger } from '@angular/animations';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Recipe } from 'src/app/interfaces/Recipe';
 import { ApiService } from 'src/app/services/api.service';
+import { ShowRecipesComponent } from '../show-recipes/show-recipes.component';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate(500),
+      ]),
+      transition('* => void', [
+        animate(400, style({ opacity: 0, transform: 'translateY(20px)' })),
+      ]),
+    ]),
+    trigger('fadeTags', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate(500),
+      ]),
+      transition('* => void', [
+        animate(400, style({ opacity: 0, transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class SearchComponent implements OnInit, OnChanges {
-  userName: string = 'UserName';
-  recipesCounter: number = 99;
   tags: string[] = [];
   recipeName: string = '';
   allIngredients: string[] = [];
   showMoreTags: boolean = false;
   recipesArr: Recipe[] = [];
+  setOrder: string = '';
+  isDescOrder: boolean = true;
+  closeMsg: boolean = true;
 
   @Input() tagFilters: { [key: string]: boolean } = {};
   filteredByTagRecipes: Recipe[] = [];
 
-  constructor(private apiServie: ApiService) {}
-
+  constructor(private apiServie: ApiService, private modal: NgbModal) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('likesArr') == null) {
@@ -32,11 +60,10 @@ export class SearchComponent implements OnInit, OnChanges {
       for (let i = 0; i < 4; i++) {
         this.tags = tagsData;
         this.tags.forEach((tag) => {
-          this.tagFilters[tag] = false;
+          this.tagFilters[tag] = true;
         });
       }
     });
-
 
     this.apiServie.getRecipes().subscribe((tagsData) => {
       this.recipesArr = tagsData;
@@ -47,9 +74,7 @@ export class SearchComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges):void{
-    
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 
   likeRecipe(ID: string) {
     this.apiServie.addLikedRecipe(ID);
@@ -79,7 +104,12 @@ export class SearchComponent implements OnInit, OnChanges {
     return tagArr;
   }
 
-  updateArrLength(arr:Recipe[]){
-    this.recipesCounter = arr.length
+  sort(order: any) {
+    this.setOrder = order;
+    this.isDescOrder;
+  }
+
+  closeMsgAction() {
+    this.closeMsg = false;
   }
 }

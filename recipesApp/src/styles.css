@@ -5,6 +5,7 @@
 
 * {
   font-family: "Rubik", sans-serif;
+  transition: all 0.2s;
 }
 
 ::selection {
@@ -18,5 +19,30 @@
   }
   .navImg {
     display: none;
+  }
+
+  .text-tags {
+    display: none;
+  }
+
+  .intro {
+    display: block;
+  }
+
+  .box {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .link {
+    display: block;
+  }
+
+  .bigMedia {
+    display: none;
+  }
+
+  .smallMedia {
+    display: block;
   }
 }

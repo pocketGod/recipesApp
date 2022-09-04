@@ -2,15 +2,15 @@
   <h2 class="text-center my-3">Logo</h2>
 
   <div class="btn-group-vertical my-4">
-    <a href="#" class="p-2 link active"
+    <a routerLink="Home" routerLinkActive="activeStyle" class="p-2 link active"
       ><i class="fa-solid fa-house mx-3"></i> Dashboard</a
     >
-    <a href="#" class="p-2 link"
-      ><i class="fa-solid fa-star mx-3"></i>My Favorites</a
+    <a routerLink="Favorites" routerLinkActive="activeStyle" class="p-2 link"
+      ><i class="fa-solid fa-heart mx-3"></i>My Favorites</a
     >
 
-    <a href="#" class="p-2 link"
-      ><i class="fa-solid fa-gear mx-3"></i> Settings</a
+    <a [routerLink]="'About'" routerLinkActive="activeStyle" class="p-2 link"
+      ><i class="fa-solid fa-circle-info mx-3"></i> About</a
     >
   </div>
 </div>

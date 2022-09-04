@@ -1,0 +1,48 @@
+h3 {
+  color: #393f94;
+}
+
+.img {
+  width: 60px;
+}
+
+.Avatar {
+  width: 220px;
+}
+
+.intro {
+  color: lightgray;
+  font-size: 10pt;
+  padding: 0;
+  margin: 0;
+}
+
+.text {
+  color: #4e4e4e;
+  font-size: 14pt;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+.btn {
+  margin-left: 4px;
+}
+
+.btn:hover {
+  background-color: #393f94;
+  color: white;
+  outline: none;
+}
+
+.box {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+}
+
+.rights {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+}

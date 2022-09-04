@@ -12,6 +12,11 @@ import { FormsModule } from '@angular/forms';
 import { TagFilterPipe } from './pipes/tag-filter.pipe';
 import { CheckIngredientsPipe } from './pipes/check-ingredients.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderModule, OrderPipe } from 'ngx-order-pipe';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AboutComponent } from './components/about/about.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FilterPipe,
     TagFilterPipe,
     CheckIngredientsPipe,
+    FavoritesComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    OrderModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
