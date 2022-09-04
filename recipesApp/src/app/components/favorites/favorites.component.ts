@@ -23,40 +23,32 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class FavoritesComponent implements OnInit {
   tags: string[] = [];
-  recipesArr: Recipe[] = [];
   allIngredients: string[] = [];
   favoritesId: string[] = [];
+  recipesArr: Recipe[] = [];
+  favoriteRecipeArr: Recipe[] = []
 
   @Input() tagFilters: { [key: string]: boolean } = {};
 
-  constructor(private apiServie: ApiService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.checkFvorites();
+    this.getRecipes()
   }
 
-  checkFvorites() {
-    if (!localStorage.getItem('likesArr')) {
-      localStorage.setItem('likesArr', '[]');
-    }
-
-    this.favoritesId = JSON.parse(
-      this.apiServie.getLocalStorageData('likesArr')
-    );
-
-    this.favoritesId.forEach((id) => {
-      this.apiServie.getRecipeByID(id).subscribe((data: Recipe) => {
-        this.recipesArr.push(data);
-      });
-    });
+  getRecipes(){
+    this.apiService.getRecipes().subscribe((data)=>{
+      this.recipesArr = data
+      // this.updateFavorites()
+    })
   }
 
-  likeRecipe(ID: string) {
-    this.apiServie.addLikedRecipe(ID);
+  unlikeRecipe(ID: string) {
+    this.getRecipes()
+    this.apiService.addLikedRecipe(ID);
   }
 
   checkIfThisRecipeIsLiked(ID: string): boolean {
-    this.checkFvorites();
-    return this.apiServie.checkIfThisRecipeIsLiked(ID);
+    return this.apiService.checkIfThisRecipeIsLiked(ID);
   }
 }

@@ -76,7 +76,7 @@
       </div>
 
       <div
-        *ngIf="recipesArr | filter: recipeName:getSelectedTags() as recipesArr"
+        *ngIf="recipesArr | filter: recipeName:getSelectedTags():'' as recipesArr"
       >
         <p class="recipesCount my-4">
           You can make
