@@ -50,7 +50,7 @@ export class SearchComponent implements OnInit, OnChanges {
   @Input() tagFilters: { [key: string]: boolean } = {};
   filteredByTagRecipes: Recipe[] = [];
 
-  constructor(private apiServie: ApiService, private modal: NgbModal, private offCanvas:NgbOffcanvas) {}
+  constructor(private apiServie: ApiService, private offCanvas: NgbOffcanvas) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('likesArr') == null) {
@@ -119,13 +119,14 @@ export class SearchComponent implements OnInit, OnChanges {
   closeMsgAction() {
     this.closeMsg = false;
   }
-  openOffCanvas(recipe:Recipe){
+  openOffCanvas(recipe: Recipe) {
     this.offCanvas.open(RecipeDetailsComponent, {
-      animation:true,
+      animation: true,
       backdrop: true,
       keyboard: true,
-      position: 'end'
-    })
-    this.apiServie.setOffCanvasRecipe(recipe)
+      scroll: true,
+      position: 'end',
+    });
+    this.apiServie.setOffCanvasRecipe(recipe);
   }
 }
