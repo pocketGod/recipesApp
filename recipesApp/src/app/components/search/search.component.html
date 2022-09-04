@@ -76,7 +76,9 @@
       </div>
 
       <div
-        *ngIf="recipesArr | filter: recipeName:getSelectedTags():'' as recipesArr"
+        *ngIf="
+          recipesArr | filter: recipeName:getSelectedTags():'' as recipesArr
+        "
       >
         <p class="recipesCount my-4">
           You can make
@@ -107,9 +109,7 @@
             <div class="m-1">
               <h5 class="card-titles">{{ recipe.title }}</h5>
               <div class="d-flex justify-content-between">
-                <p class="small card-text">
-                  You have {{ recipe.description }} ingredients
-                </p>
+                <p class="small card-text">{{ recipe.description }}xw</p>
                 <p class="text-muted small">
                   <i class="fa-solid fa-star mx-1 rating"></i
                   >{{ recipe.rating }}
