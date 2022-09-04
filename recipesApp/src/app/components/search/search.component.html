@@ -40,59 +40,12 @@
       </div>
       <div class="col col-lg-2 small my-2">
         <span class="text-muted">Sort by: </span>
-<<<<<<< HEAD
-        <select name="dropdownOption" id="dropdownOption">
-          <option value="Name" [value]="sort('title')">Name</option>
-          <option value="Rating" [value]="sort('rating')">Rating</option>
-        </select>
-      </div>
-
-      <div *ngIf="showMoreTags" class="my-2" @fadeTags>
-        <ul class="tags">
-          <li *ngFor="let tag of tags">
-            <input
-              name="{{ tag }}"
-              [(ngModel)]="tagFilters[tag]"
-              type="checkbox"
-              id="{{ tag }}"
-              value="{{ tag }}"
-              (change)="onTagCheckboxChange($event)"
-            />
-            <label for="{{ tag }}">{{ tag }}</label>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div
-      *ngIf="recipesArr | filter: recipeName:getSelectedTags() as recipesArr"
-    >
-      <p class="recipesCount my-4">
-        You can make
-        <span class="count" [innerHTML]="recipesArr.length"></span>
-        recipes
-      </p>
-      <div class="d-flex gap-5 flex-wrap" id="allTags">
-        <div
-          class="card"
-          *ngFor="let recipe of recipesArr | orderBy: setOrder:isDescOrder"
-          @fade
-          (click)="openOffCanvas(recipe)"
-        >
-          <div
-            (click)="likeRecipe(recipe.recipe_id!)"
-            class="overlay"
-            [ngClass]="{
-              'already-liked': checkIfThisRecipeIsLiked(recipe.recipe_id!)
-            }"
-=======
         <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
->>>>>>> bc13ae2 (..)
           >
             {{ getSort() }}
           </button>
