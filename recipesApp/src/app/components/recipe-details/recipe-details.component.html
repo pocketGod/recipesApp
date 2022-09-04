@@ -1,6 +1,11 @@
-<button (click)="closeCanvas()">היי שחף תסגור אותי</button>
+<div>
+  <button (click)="closeCanvas()" class="overlay">
+    <i class="fa-solid fa-circle-xmark"></i>
+  </button>
+</div>
 
 <img src="{{ offCanvasRecipe.img }}" class="img" />
+
 <div class="container">
   <div class="header">
     <h3>{{ offCanvasRecipe.title }}</h3>
@@ -30,7 +35,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ingredient of offCanvasRecipe.ingredients">
+      <tr
+        *ngFor="let ingredient of offCanvasRecipe.ingredients"
+        class="text-muted"
+      >
         <td class="ingredientName">{{ ingredient.name }}</td>
         <td>{{ ingredient.amount }}</td>
         <td>{{ ingredient.similar }}</td>

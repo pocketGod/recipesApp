@@ -1,5 +1,6 @@
-h2 {
-  color: #393f94;
+.logo {
+  width: 200px;
+  user-select: none;
 }
 
 a {
@@ -7,7 +8,7 @@ a {
 }
 
 .sidebar {
-  min-width: 260px;
+  width: 260px;
 }
 
 .btn-group-vertical {
@@ -31,7 +32,7 @@ a {
   color: #696969;
 }
 
-img {
+.navImg {
   position: fixed;
   bottom: 50px;
   left: 15px;

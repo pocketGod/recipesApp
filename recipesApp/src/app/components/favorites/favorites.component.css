@@ -5,6 +5,11 @@
   height: 80vh;
 }
 
+.recipesCount {
+  color: #b1b1b1;
+  margin: 0;
+}
+
 h3 {
   color: #393f94;
 }
@@ -68,18 +73,22 @@ h3 {
   padding: 20px;
   border-radius: 50px;
   backdrop-filter: blur(10px);
-  background-color: #393f94b1;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .overlay:hover {
-  color: rgb(255, 255, 255);
+  color: #ffbf38;
   transform: scale(1.2);
   cursor: pointer;
 }
 
 .already-liked {
-  color: rgb(255, 255, 255);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  color: #393f94;
+  background-color: #ffffff70;
+}
+
+.card:hover .overlay {
+  background-color: #2525254c;
 }
 
 .rating {
