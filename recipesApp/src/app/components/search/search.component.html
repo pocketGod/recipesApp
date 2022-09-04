@@ -76,6 +76,7 @@
           class="card"
           *ngFor="let recipe of recipesArr | orderBy: setOrder:isDescOrder"
           @fade
+          (click)="openOffCanvas(recipe)"
         >
           <div
             (click)="likeRecipe(recipe.recipe_id!)"

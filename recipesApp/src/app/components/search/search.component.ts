@@ -6,9 +6,10 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { Recipe } from 'src/app/interfaces/Recipe';
 import { ApiService } from 'src/app/services/api.service';
+import { RecipeDetailsComponent } from '../recipe-details/recipe-details.component';
 import { ShowRecipesComponent } from '../show-recipes/show-recipes.component';
 
 @Component({
@@ -49,7 +50,7 @@ export class SearchComponent implements OnInit, OnChanges {
   @Input() tagFilters: { [key: string]: boolean } = {};
   filteredByTagRecipes: Recipe[] = [];
 
-  constructor(private apiServie: ApiService, private modal: NgbModal) {}
+  constructor(private apiServie: ApiService, private modal: NgbModal, private offCanvas:NgbOffcanvas) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('likesArr') == null) {
@@ -111,5 +112,14 @@ export class SearchComponent implements OnInit, OnChanges {
 
   closeMsgAction() {
     this.closeMsg = false;
+  }
+  openOffCanvas(recipe:Recipe){
+    this.offCanvas.open(RecipeDetailsComponent, {
+      animation:true,
+      backdrop: true,
+      keyboard: true,
+      position: 'end'
+    })
+    this.apiServie.setOffCanvasRecipe(recipe)
   }
 }

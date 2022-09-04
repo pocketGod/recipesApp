@@ -14,8 +14,9 @@ import { CheckIngredientsPipe } from './pipes/check-ingredients.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderModule, OrderPipe } from 'ngx-order-pipe';
 import { FavoritesComponent } from './components/favorites/favorites.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbOffcanvasModule } from '@ng-bootstrap/ng-bootstrap';
 import { AboutComponent } from './components/about/about.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AboutComponent } from './components/about/about.component';
     CheckIngredientsPipe,
     FavoritesComponent,
     AboutComponent,
+    RecipeDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { AboutComponent } from './components/about/about.component';
     BrowserAnimationsModule,
     OrderModule,
     NgbModule,
+    NgbOffcanvasModule
   ],
   providers: [],
   bootstrap: [AppComponent],

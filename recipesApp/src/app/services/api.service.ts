@@ -13,6 +13,8 @@ export class ApiService {
 
   allRecipes: Recipe[] = []
 
+  offCanvasRecipe!: Recipe
+
 
   // Recipe Http Methods
   getRecipes():Observable<Recipe[]> {
@@ -69,6 +71,16 @@ export class ApiService {
     let likesArr: string[] = JSON.parse(this.getLocalStorageData('likesArr'))
     return likesArr.includes(ID)
   }
+
+
+
+  setOffCanvasRecipe(recipe:Recipe){
+    this.offCanvasRecipe = recipe
+  }
+  getOffCanvasRecipe():Recipe{
+    return this.offCanvasRecipe
+  }
+
 
   
 
