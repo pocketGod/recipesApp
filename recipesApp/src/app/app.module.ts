@@ -17,6 +17,8 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { NgbModule, NgbOffcanvasModule } from '@ng-bootstrap/ng-bootstrap';
 import { AboutComponent } from './components/about/about.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     FavoritesComponent,
     AboutComponent,
     RecipeDetailsComponent,
+    LoginComponent,
+    AddRecipeComponent,
   ],
   imports: [
     BrowserModule,
