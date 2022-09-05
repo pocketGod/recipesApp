@@ -50,9 +50,22 @@ export class FavoritesComponent implements OnInit {
   }
 
   unlikeRecipe(ID: string) {
-    this.getRecipes();
+    // console.log(this.recipesArr);
+
+    // this.recipesArr.forEach((rcp)=>{
+    //   if(rcp.recipe_id == ID){
+    //     let index = this.recipesArr.indexOf(rcp)
+    //     this.recipesArr.splice(index,1)
+    //   }
+    // })
+
+    // console.log(this.recipesArr);
+    
     this.apiService.addLikedRecipe(ID);
+    this.getRecipes();
+
   }
+
 
   checkIfThisRecipeIsLiked(ID: string): boolean {
     return this.apiService.checkIfThisRecipeIsLiked(ID);
