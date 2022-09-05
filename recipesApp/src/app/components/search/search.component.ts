@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit, OnChanges {
       for (let i = 0; i < 4; i++) {
         this.tags = tagsData;
         this.tags.forEach((tag) => {
-          this.tagFilters[tag] = true;
+          this.tagFilters[tag] = false;
         });
       }
     });
