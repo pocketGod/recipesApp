@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UsersService {
-  userArr: any[] = [{ email: 'seza@gmail.com', password: '123456' }];
+  userArr: any[] = [{ email: 'seza@gmail.com', password: '123456' }, { email: 'aviv@gmail.com', password: '123456' }];
   isLoggedin: boolean = false;
   constructor() {}
 

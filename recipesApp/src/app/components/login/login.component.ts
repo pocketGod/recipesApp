@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
         user.email == loginForm.value.email &&
         user.password == loginForm.value.password
       ) {
+        this.us.setloggedIn();
         this.router.navigateByUrl('Add-Recipe');
-        this.users.setLoggedIn();
         return;
       }
     }
