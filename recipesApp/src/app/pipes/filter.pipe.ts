@@ -25,9 +25,9 @@ export class FilterPipe implements PipeTransform {
     }
 
     for (let recipe of recipes) {
-      if (recipe.title.toLowerCase().includes(value)) resArr.add(recipe)
+      if (recipe.title.toLowerCase().includes(value.toLowerCase())) resArr.add(recipe)
       recipe.ingredients.forEach((ing) => {
-        if (ing.name.includes(value)) resArr.add(recipe)
+        if (ing.name.includes(value.toLowerCase())) resArr.add(recipe)
       })
     }
 
