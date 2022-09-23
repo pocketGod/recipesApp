@@ -7,12 +7,14 @@ const register = require('./routes/register')
 const login = require('./routes/login')
 const recipes = require('./routes/recipes')
 
+const serverless = require('serverless-http')
 
 const app = express()
 const PORT = process.env.PORT || 8001
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use('/.netlify/functions/api')
 app.use(cors({origin:'*'}))
 app.use(logger)
 app.use('/api/register', register)
@@ -29,3 +31,6 @@ mongoose.connect(process.env.DBSTRING, {useNewUrlParser: true}).then(()=> consol
 
 
 app.listen(PORT, ()=> console.log(`server has started on port: ${PORT}`))
+
+
+module.exports.handler = serverless(app)
