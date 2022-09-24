@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "recipes-app-ng-2022": {
+      "hosting": {
+        "recipesApp": [
+          "recipes-app-ng-2022"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "recipes-app-ng-2022"
+  }
+}
