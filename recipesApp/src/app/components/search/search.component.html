@@ -61,7 +61,7 @@
             <li><a class="dropdown-item" (click)="sort('')">All</a></li>
             <li><a class="dropdown-item" (click)="sort('title')">Title</a></li>
             <li>
-              <a class="dropdown-item" (click)="sort('Rating')">Rating</a>
+              <a class="dropdown-item" (click)="sort('rating')">Rating</a>
             </li>
           </ul>
         </div>
@@ -97,7 +97,7 @@
       <div class="d-flex gap-5 flex-wrap" id="allTags">
         <div
           class="card"
-          *ngFor="let recipe of recipesArr | orderBy: setOrder:isDescOrder"
+          *ngFor="let recipe of recipesArr | orderBy: setOrder"
           @fade
         >
           <div
