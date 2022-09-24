@@ -9,7 +9,8 @@ import { User } from '../interfaces/User'
 })
 export class ApiService {
   
-  baseURL : string = 'http://localhost:8000/api/'
+  // baseURL : string = 'http://localhost:8000/api/'
+  baseURL: string = 'https://recipes-server-production.up.railway.app/api/'
 
   allRecipes: Recipe[] = []
 
